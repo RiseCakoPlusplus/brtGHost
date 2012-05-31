@@ -5,7 +5,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ghost", "ghost\ghost.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BNCSutil", "bncsutil\vc8_build\BNCSutil.vcxproj", "{CFB9AEE6-C0BB-49B0-B0F5-F564975202B8}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "update_dota_elo", "update_dota_elo\update_dota_elo.vcproj", "{B77E1E52-C1FB-4226-B05B-9E70433BB95E}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "update_dota_elo", "update_dota_elo\update_dota_elo.vcxproj", "{B77E1E52-C1FB-4226-B05B-9E70433BB95E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

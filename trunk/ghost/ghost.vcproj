@@ -372,10 +372,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\configdata.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\crc32.cpp"
 				>
 			</File>
@@ -441,10 +437,6 @@
 			</File>
 			<File
 				RelativePath=".\packed.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\pubprotocol.cpp"
 				>
 			</File>
 			<File
@@ -515,10 +507,6 @@
 			</File>
 			<File
 				RelativePath=".\config.h"
-				>
-			</File>
-			<File
-				RelativePath=".\configdata.h"
 				>
 			</File>
 			<File
@@ -599,10 +587,6 @@
 			</File>
 			<File
 				RelativePath=".\packed.h"
-				>
-			</File>
-			<File
-				RelativePath=".\pubprotocol.h"
 				>
 			</File>
 			<File

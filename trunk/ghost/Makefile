@@ -4,7 +4,7 @@ C++ = g++
 CC = gcc
 DFLAGS = -DGHOST_MYSQL
 OFLAGS = -O3
-LFLAGS = -L. -L../bncsutil/src/bncsutil/ -L../StormLib/stormlib/ -L/usr/local/lib/mysql -L/usr/local/include/ -L/usr/local/lib -lbncsutil -lpthread -ldl -lz -lStorm -lmysqlclient_r -lboost_date_time-mt -lboost_thread-mt -lboost_system-mt -lboost_filesystem-mt
+LFLAGS = -L. -L../bncsutil/src/bncsutil/ -L../StormLib/stormlib/ -L/usr/local/lib/mysql -L/usr/local/include/ -L/usr/local/lib -lbncsutil -lpthread -ldl -lz -lStorm -lmysqlclient_r -lboost_date_time -lboost_thread -lboost_system -lboost_filesystem
 CFLAGS =
 
 ifeq ($(SYSTEM),Darwin)
@@ -23,13 +23,13 @@ DFLAGS += -D__SOLARIS__
 LFLAGS += -lresolv -lsocket -lnsl
 endif
 
-CFLAGS += $(OFLAGS) $(DFLAGS) -I. -I/usr/unclude/boost -I../bncsutil/src/ -I../StormLib/ -I/usr/local/include -I/usr/local/include/boost-1_39
+CFLAGS += $(OFLAGS) $(DFLAGS) -I. -I/usr/include/boost -I../bncsutil/src/ -I../StormLib/ -I/usr/local/include -I/usr/local/include/boost
 
 ifeq ($(SYSTEM),Darwin)
 CFLAGS += -I../mysql/include/
 endif
 
-OBJS = bncsutilinterface.o bnet.o bnetprotocol.o pubprotocol.o configdata.o bnlsclient.o bnlsprotocol.o commandpacket.o config.o crc32.o csvparser.o game.o game_admin.o game_base.o gameplayer.o gameprotocol.o gameslot.o ghost.o ghostdb.o ghostdbmysql.o ghostdbsqlite.o gpsprotocol.o language.o map.o packed.o replay.o savegame.o sha1.o socket.o stats.o statsdota.o statsw3mmd.o util.o items.o
+OBJS = bncsutilinterface.o bnet.o bnetprotocol.o bnlsclient.o bnlsprotocol.o commandpacket.o config.o crc32.o csvparser.o game.o game_admin.o game_base.o gameplayer.o gameprotocol.o gameslot.o gcbiprotocol.o ghost.o ghostdb.o ghostdbmysql.o ghostdbsqlite.o gpsprotocol.o language.o map.o packed.o replay.o savegame.o sha1.o socket.o stats.o statsdota.o statsw3mmd.o util.o items.o
 COBJS = sqlite3.o
 PROGS = ./ghost++
 
@@ -55,8 +55,6 @@ bncsutilinterface.o: ghost.h includes.h util.h bncsutilinterface.h
 bnet.o: ghost.h includes.h util.h config.h language.h socket.h commandpacket.h ghostdb.h bncsutilinterface.h bnlsclient.h bnetprotocol.h bnet.h map.h packed.h savegame.h replay.h gameprotocol.h game_base.h
 bnetprotocol.o: ghost.h includes.h util.h bnetprotocol.h
 bnlsclient.o: ghost.h includes.h util.h socket.h commandpacket.h bnlsprotocol.h bnlsclient.h
-configdata.o: includes.h configdata.h
-pubprotocol.o: includes.h pubprotocol.h
 bnlsprotocol.o: ghost.h includes.h util.h bnlsprotocol.h
 commandpacket.o: ghost.h includes.h commandpacket.h
 config.o: ghost.h includes.h config.h
@@ -65,10 +63,11 @@ csvparser.o: csvparser.h
 game.o: ghost.h includes.h util.h config.h language.h socket.h ghostdb.h bnet.h map.h packed.h savegame.h gameplayer.h gameprotocol.h game_base.h game.h stats.h statsdota.h statsw3mmd.h
 game_admin.o: ghost.h includes.h util.h config.h language.h socket.h ghostdb.h bnet.h map.h packed.h savegame.h replay.h gameplayer.h gameprotocol.h game_base.h game_admin.h
 game_base.o: ghost.h includes.h util.h config.h language.h socket.h ghostdb.h bnet.h map.h packed.h savegame.h replay.h gameplayer.h gameprotocol.h game_base.h next_combination.h
-gameplayer.o: ghost.h includes.h util.h language.h socket.h commandpacket.h bnet.h map.h gameplayer.h gameprotocol.h gpsprotocol.h game_base.h
+gameplayer.o: ghost.h includes.h util.h language.h socket.h commandpacket.h bnet.h map.h gameplayer.h gameprotocol.h gpsprotocol.h game_base.h gcbiprotocol.h
 gameprotocol.o: ghost.h includes.h util.h crc32.h gameplayer.h gameprotocol.h game_base.h
 gameslot.o: ghost.h includes.h gameslot.h
-ghost.o: ghost.h includes.h util.h crc32.h sha1.h csvparser.h config.h language.h socket.h ghostdb.h ghostdbsqlite.h ghostdbmysql.h bnet.h map.h packed.h savegame.h gameplayer.h gameprotocol.h gpsprotocol.h game_base.h game.h game_admin.h
+gcbiprotocol.o: gcbiprotocol.h ghost.h util.h
+ghost.o: ghost.h includes.h util.h crc32.h sha1.h csvparser.h config.h language.h socket.h ghostdb.h ghostdbsqlite.h ghostdbmysql.h bnet.h map.h packed.h savegame.h gameplayer.h gameprotocol.h gpsprotocol.h game_base.h game.h game_admin.h gcbiprotocol.h
 ghostdb.o: ghost.h includes.h util.h config.h ghostdb.h
 ghostdbmysql.o: ghost.h includes.h util.h config.h ghostdb.h ghostdbmysql.h
 ghostdbsqlite.o: ghost.h includes.h util.h config.h ghostdb.h ghostdbsqlite.h

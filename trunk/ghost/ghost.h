@@ -22,7 +22,6 @@
 #define GHOST_H
 
 #include "includes.h"
-#include "configdata.h"
 #include "config.h"
 #include "ghostdb.h"
 #include "commandpacket.h"
@@ -35,6 +34,7 @@ class CUDPSocket;
 class CTCPServer;
 class CTCPSocket;
 class CGPSProtocol;
+class CGCBIProtocol;
 class CPUBProtocol;
 class CCRC32;
 class CSHA1;
@@ -68,30 +68,6 @@ public:
 	virtual void SetResult( uint32_t nResult )	{ m_Result = nResult; }
 };
 
-class CbrtServer
-{
-private:
-	CTCPServer *m_CommandSocketServer;			// command socket server
-	CTCPSocket *m_CommandSocket;				// 
-	bool nExiting;
-
-	uint32_t m_Port;
-
-public:
-	queue<CCommandPacket *> m_CommandPackets;  // queue incoming packets of command server
-	queue<BYTEARRAY> m_PacketsToServer;		   // Packet who be sent to the main server
-
-public:
-	CbrtServer(uint32_t nPort);
-	~CbrtServer();
-
-	bool isExiting() { return nExiting; }
-
-	void Update(int usecBlock);
-
-	bool ExctactsCommandPackets();
-};
-
 class CGHost
 {
 public:
@@ -101,6 +77,7 @@ public:
 	vector<CTCPSocket *> m_ReconnectSockets;// vector of sockets attempting to reconnect (connected but not identified yet)
 
 	CGPSProtocol *m_GPSProtocol;
+	CGCBIProtocol *m_GCBIProtocol;
 	CCRC32 *m_CRC;							// for calculating CRC's
 	CSHA1 *m_SHA;							// for calculating SHA1's
 	vector<CBNET *> m_BNETs;				// all our battle.net connections (there can be more than one)
@@ -117,7 +94,6 @@ public:
 	CMap *m_AutoHostMap;					// the map to use when autohosting
 	CSaveGame *m_SaveGame;					// the save game to use
 	vector<PIDPlayer> m_EnforcePlayers;		// vector of pids to force players to use in the next game (used with saved games)
-	CConfigData* m_Config;
 
 	bool m_Exiting;							// set to true to force ghost to shutdown next update (used by SignalCatcher)
 	bool m_ExitingNice;						// set to true to force ghost to disconnect from all battle.net connections and wait for all games to finish before shutting down
@@ -214,6 +190,7 @@ public:
 	bool m_AutoLock;						// config value: auto lock games when the owner is present
 	bool m_AutoSave;						// config value: auto save before someone disconnects
 	uint32_t m_AllowDownloads;				// config value: allow map downloads or not
+//	string m_DownloadRejectMessage;				// config value: message sent to the player if download is rejected
 	bool m_PingDuringDownloads;				// config value: ping during map downloads or not
 	bool m_LCPings;							// config value: use LC style pings (divide actual pings by two)
 	uint32_t m_DropVoteTime;       			// config value: accept drop votes after this amount of seconds
@@ -222,8 +199,15 @@ public:
 	string m_IPBlackListFile;				// config value: IP blacklist file (ipblacklist.txt)
 	uint32_t m_Latency;						// config value: the latency (by default)
 	uint32_t m_SyncLimit;					// config value: the maximum number of packets a player can fall out of sync before starting the lag screen (by default)
+	bool m_VoteStartAllowed;				// config value: if votestarts are allowed or not
+	bool m_VoteStartAutohostOnly;				// config value: if votestarts are only allowed in autohosted games
+	uint32_t m_VoteStartMinPlayers;				// config value: minimum number of players before users can !votestart
+	bool m_VoteStartPercentalVoting;			// config value: votestart percental (true) or absolute (false)
+	uint16_t m_VoteStartPercent;				// config value: value in percent for votestart
+	bool m_AutoLatency;            			// config value: automatically set latency
 	bool m_VoteKickAllowed;					// config value: if votekicks are allowed or not
 	uint32_t m_VoteKickPercentage;			// config value: percentage of players required to vote yes for a votekick to pass
+	uint32_t m_PlayerBeforeStartPrintDelay;			// config value: delay * 10s is the time between two WaitingForPlayersBeforeStart prints
 	string m_DefaultMap;					// config value: default map (map.cfg)
 	string m_MOTDFile;						// config value: motd.txt
 	string m_GameLoadedFile;				// config value: gameloaded.txt
@@ -315,7 +299,6 @@ public:
 	bool m_norank;
 	bool m_nostatsdota; 
 	bool m_Refresh0Uptime;
-	bool m_AnnouncePlayerJoin;				// config value: announce player join
 	bool m_dontshowsdforadmins;				// config value: Show !sd for admins or not
 	bool m_doautowarn;
 	bool m_UsersCanHost;
@@ -396,7 +379,7 @@ public:
 	
 //	bool m_dbopen;
 
-	CGHost( CConfig *CFG, CConfigData* nConfig );
+	CGHost( CConfig *CFG );
 	~CGHost( );
 
 	string Commands(unsigned int idx);
@@ -438,8 +421,6 @@ public:
 
 	bool Update( unsigned long usecBlock );
 
-	bool ProcessCommandPackets();
-
 	// events
 
 	void EventBNETConnecting( CBNET *bnet );
@@ -464,6 +445,9 @@ public:
 	void LoadIPToCountryDataOpt( );
 	void CreateGame( CMap *map, unsigned char gameState, bool saveGame, string gameName, string ownerName, string creatorName, string creatorServer, bool whisper );
 
+	CTCPServer *m_GameBroadcastersListener; // listening socket for game broadcasters
+	vector<CTCPSocket *> m_GameBroadcasters;// vector of sockets that broadcast the games
+		
 	// Metal_Koola's attempts
 	bool m_dropifdesync;				// config value: Drop desynced players
 	int m_CookieOffset;					// System used to remove need for bnet_bnlswardencookie. May need further optimization.

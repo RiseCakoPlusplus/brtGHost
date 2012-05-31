@@ -134,10 +134,10 @@ public:
 	BYTEARRAY SEND_W3GS_START_LAG( vector<CGamePlayer *> players, bool loadInGame = false );
 	BYTEARRAY SEND_W3GS_STOP_LAG( CGamePlayer *player, bool loadInGame = false );
 	BYTEARRAY SEND_W3GS_SEARCHGAME( bool TFT, unsigned char war3Version );
-	BYTEARRAY SEND_W3GS_GAMEINFO( bool TFT, unsigned char war3Version, BYTEARRAY mapGameType, BYTEARRAY mapFlags, BYTEARRAY mapWidth, BYTEARRAY mapHeight, string gameName, string hostName, uint32_t upTime, string mapPath, BYTEARRAY mapCRC, uint32_t slotsTotal, uint32_t slotsOpen, uint16_t port, uint32_t hostCounter, uint32_t entryKey );
+	BYTEARRAY SEND_W3GS_GAMEINFO( bool TFT, unsigned char war3Version, BYTEARRAY mapGameType, BYTEARRAY mapFlags, BYTEARRAY mapWidth, BYTEARRAY mapHeight, string gameName, string hostName, uint32_t upTime, string mapPath, BYTEARRAY mapCRC, uint32_t slotsTotal, uint32_t slotsOpen, uint16_t port, uint32_t hostCounter );
 	BYTEARRAY SEND_W3GS_CREATEGAME( bool TFT, unsigned char war3Version );
 	BYTEARRAY SEND_W3GS_REFRESHGAME( uint32_t players, uint32_t playerSlots, uint32_t HostCounter );
-	BYTEARRAY SEND_W3GS_DECREATEGAME( uint32_t HostCounter );
+	BYTEARRAY SEND_W3GS_DECREATEGAME( );
 	BYTEARRAY SEND_W3GS_MAPCHECK( string mapPath, BYTEARRAY mapSize, BYTEARRAY mapInfo, BYTEARRAY mapCRC, BYTEARRAY mapSHA1 );
 	BYTEARRAY SEND_W3GS_STARTDOWNLOAD( unsigned char fromPID );
 	BYTEARRAY SEND_W3GS_MAPPART( unsigned char fromPID, unsigned char toPID, uint32_t start, string *mapData );
@@ -160,16 +160,14 @@ class CIncomingJoinPlayer
 private:
 	uint32_t m_HostCounter;
 	string m_Name;
-	uint32_t m_EntryKey;
 	BYTEARRAY m_InternalIP;
 
 public:
-	CIncomingJoinPlayer( uint32_t nHostCounter, uint32_t n_EntryKey, string nName, BYTEARRAY &nInternalIP );
+	CIncomingJoinPlayer( uint32_t nHostCounter, string nName, BYTEARRAY &nInternalIP );
 	~CIncomingJoinPlayer( );
 
 	uint32_t GetHostCounter( )	{ return m_HostCounter; }
 	string GetName( )			{ return m_Name; }
-	uint32_t GetEntryKey( )     { return m_EntryKey; } 
 	BYTEARRAY GetInternalIP( )	{ return m_InternalIP; }
 };
 

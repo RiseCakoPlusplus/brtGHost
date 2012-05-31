@@ -107,10 +107,10 @@ void CGHostDBMySQL :: RecoverCallable( CBaseCallable *callable )
 
 	if( MySQLCallable )
 	{
-		if( m_IdleConnections.size( ) > m_MaxConnections )
+		if( m_IdleConnections.size( ) > 30 || !MySQLCallable->GetError( ).empty( ) )
 		{
 			mysql_close( (MYSQL *)MySQLCallable->GetConnection( ) );
-			m_NumConnections--;
+                        --m_NumConnections;
 		}
 		else
 			m_IdleConnections.push( MySQLCallable->GetConnection( ) );
@@ -700,7 +700,7 @@ void *CGHostDBMySQL :: GetIdleConnection( )
 {
 	void *Connection = NULL;
 
-	if (m_IdleConnections.size() > m_NumConnections )
+	if ( m_IdleConnections.size() > m_NumConnections )
 		CONSOLE_Print( "[MYSQL] closing " + UTIL_ToString( m_IdleConnections.size( ) - m_NumConnections ) + "/" + UTIL_ToString( m_IdleConnections.size( )) + " idle MySQL connections" );
 
 	while( m_IdleConnections.size() > m_NumConnections )
@@ -1475,7 +1475,7 @@ uint32_t MySQLRemoveTempBans( void *conn, string *error, uint32_t botid, string 
 {
 	string EscServer = MySQLEscapeString( conn, server );
 	uint32_t Count = 0;
-	string Query = "DELETE FROM bans WHERE server='"+EscServer+"' AND expiredate=CURDATE()";
+	string Query = "DELETE FROM bans WHERE server='"+EscServer+"' AND expiredate<=CURDATE()";
 
 	if( mysql_real_query( (MYSQL *)conn, Query.c_str( ), Query.size( ) ) != 0 )
 		*error = mysql_error( (MYSQL *)conn );

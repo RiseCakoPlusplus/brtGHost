@@ -285,7 +285,7 @@ void CAdminGame :: SendAdminChat( string message )
 
 void CAdminGame :: SendWelcomeMessage( CGamePlayer *player )
 {
-	SendChat( player, "brtGHost++ Admin Game                  http://www.brt.org.ua/" );
+	SendChat( player, "DotaFury++       Game                http://www.dotafury.com/" );
 	SendChat( player, "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" );
 	SendChat( player, "Commands: addadmin, autohost, autohostmm, checkadmin" );
 	SendChat( player, "Commands: checkban, countadmins, countbans, deladmin" );
@@ -878,7 +878,7 @@ bool CAdminGame :: EventPlayerBotCommand( CGamePlayer *player, string command, s
 		// !QUIT
 		//
 
-		else if( Command == "exit" || Command == "quit" )
+		else if( ( Command == "exit" || Command == "quit" ) )
 		{
 			if( Payload == "nice" )
 				m_GHost->m_ExitingNice = true;
@@ -960,8 +960,8 @@ bool CAdminGame :: EventPlayerBotCommand( CGamePlayer *player, string command, s
 
 						for( directory_iterator i( MapCFGPath ); i != EndIterator; i++ )
 						{
-							string FileName = i->path().filename().string();
-							string Stem = i->path().stem().string();
+							string FileName = i->path( ).filename( ).string( );
+							string Stem = i->path( ).stem( ).string( );
 							transform( FileName.begin( ), FileName.end( ), FileName.begin( ), (int(*)(int))tolower );
 							transform( Stem.begin( ), Stem.end( ), Stem.begin( ), (int(*)(int))tolower );
 
@@ -971,9 +971,9 @@ bool CAdminGame :: EventPlayerBotCommand( CGamePlayer *player, string command, s
 								Matches++;
 
 								if( FoundMapConfigs.empty( ) )
-									FoundMapConfigs = i->path().filename().string();
+									FoundMapConfigs = i->path( ).filename( ).string( );
 								else
-									FoundMapConfigs += ", " + i->path().filename().string();
+									FoundMapConfigs += ", " + i->path( ).filename( ).string( );
 
 								// if the pattern matches the filename exactly, with or without extension, stop any further matching
 
@@ -989,7 +989,7 @@ bool CAdminGame :: EventPlayerBotCommand( CGamePlayer *player, string command, s
 							SendChat( player, tr("lang_0176") ); // NoMapConfigsFound
 						else if( Matches == 1 )
 						{
-							string File = LastMatch.filename( ).string();
+							string File = LastMatch.filename( ).string( );
 							SendChat( player, tr("lang_0029", m_GHost->m_MapCFGPath + File ) ); // LoadingConfigFile
 							CConfig MapCFG;
 							MapCFG.Read( LastMatch.string( ) );
@@ -1045,7 +1045,7 @@ bool CAdminGame :: EventPlayerBotCommand( CGamePlayer *player, string command, s
 		//
 
 		if  (( Command.length()>=6) && ( Command.substr(0,4) == "pubn" ) && 
-			(!Payload.empty( )) && (((Command.length()-4) % 2)==0))
+			(!Payload.empty( )) && (((Command.length()-4) % 2)==0) )
 		{
 			int k = Command.length()-4;
 			if (k % 2 != 0)
@@ -1077,7 +1077,7 @@ bool CAdminGame :: EventPlayerBotCommand( CGamePlayer *player, string command, s
 		//
 
 		if  (( Command.length()>=5) && ( Command != "pubby" ) && ( Command.substr(0,3) == "pub" ) && 
-			(!Payload.empty( )))
+			(!Payload.empty( )) )
 		{
 			int k = Command.length()-3;
 			if (k % 2 != 0)
@@ -1149,8 +1149,8 @@ bool CAdminGame :: EventPlayerBotCommand( CGamePlayer *player, string command, s
 
 						for( directory_iterator i( MapPath ); i != EndIterator; i++ )
 						{
-							string FileName = i->path().filename().string();
-							string Stem = i->path().stem().string();
+							string FileName = i->path( ).filename( ).string( );
+							string Stem = i->path( ).stem( ).string( );
 							transform( FileName.begin( ), FileName.end( ), FileName.begin( ), (int(*)(int))tolower );
 							transform( Stem.begin( ), Stem.end( ), Stem.begin( ), (int(*)(int))tolower );
 
@@ -1160,9 +1160,9 @@ bool CAdminGame :: EventPlayerBotCommand( CGamePlayer *player, string command, s
 								Matches++;
 
 								if( FoundMaps.empty( ) )
-									FoundMaps = i->path().filename().string();
+									FoundMaps = i->path( ).filename( ).string( );
 								else
-									FoundMaps += ", " + i->path().filename().string();
+									FoundMaps += ", " + i->path( ).filename( ).string( );
 
 								// if the pattern matches the filename exactly, with or without extension, stop any further matching
 
@@ -1178,7 +1178,7 @@ bool CAdminGame :: EventPlayerBotCommand( CGamePlayer *player, string command, s
 							SendChat( player, tr("lang_0173") ); // NoMapsFound
 						else if( Matches == 1 )
 						{
-							string File = LastMatch.filename().string();
+							string File = LastMatch.filename( ).string( );
 							SendChat( player, tr( "lang_0029", File ) ); // LoadingConfigFile
 
 							// hackhack: create a config file in memory with the required information to load the map

@@ -84,7 +84,7 @@ CBNET :: CBNET( CGHost *nGHost, string nServer, string nServerAlias, string nBNL
 	else if( LowerServer == "server.eurobattle.net" )
 		m_ServerAlias = "XPAM";
 	else if( LowerServer == "200.51.203.231" )
-		m_ServerAlias = "Ombu";
+		m_ServerAlias = "Ombu";	
 	else
 		m_ServerAlias = m_Server;
 
@@ -152,8 +152,8 @@ CBNET :: CBNET( CGHost *nGHost, string nServer, string nServerAlias, string nBNL
 	m_LastMars = GetTime()-10;
 //	m_LastChatCommandTime = 0;
 //	m_AutoHostMaximumGames = 0;
-	//m_AutoHostAutoStartPlayers = 0;
-	//m_LastAutoHostTime = 0;
+//	m_AutoHostAutoStartPlayers = 0;
+//	m_LastAutoHostTime = 0;
 	m_LastStats = 0;
 	m_WaitingToConnect = true;
 	m_LoggedIn = false;
@@ -956,12 +956,12 @@ bool CBNET :: Update( void *fd, void *send_fd )
 			big = UTIL_ToUInt32(m_GHost->m_bnetpacketdelaybigpvpgn);
 		}
 
-		if( m_LastOutPacketSize < 10 )
-			WaitTicks = 1000;
-		else if( m_LastOutPacketSize < 100 )
-			WaitTicks = medium;
-		else
-			WaitTicks = big;
+        if( m_LastOutPacketSize < 10 )
+            WaitTicks = 1200;
+        else if( m_LastOutPacketSize < 100 )
+            WaitTicks = 3700;
+        else
+            WaitTicks = 6000;
 
 		if( !m_OutPackets.empty( ) && GetTicks( ) - m_LastOutPacketTicks >= WaitTicks )
 		{
@@ -1026,9 +1026,9 @@ bool CBNET :: Update( void *fd, void *send_fd )
 			m_LastChatCommandTime = GetTime( );
 			return m_Exiting;
 		}
-		else if( GetTime( ) - m_LastConnectionAttemptTime >= 15 )
+		else if( GetTime( ) - m_LastConnectionAttemptTime >= 30 )
 		{
-			// the connection attempt timed out (15 seconds)
+			// the connection attempt timed out (30 seconds)
 
 			CONSOLE_Print( "[BNET: " + m_ServerAlias + "] connect timed out" );
 			CONSOLE_Print( "[BNET: " + m_ServerAlias + "] waiting "+UTIL_ToString(timetowait)+" seconds to reconnect" );
@@ -1051,12 +1051,22 @@ bool CBNET :: Update( void *fd, void *send_fd )
 		if( !m_GHost->m_BindAddress.empty( ) )
 			CONSOLE_Print( "[BNET: " + m_ServerAlias + "] attempting to bind to address [" + m_GHost->m_BindAddress + "]" );
 
-		m_Socket->Connect( m_GHost->m_BindAddress, m_Server, 6112 );
-
-		if( !m_Socket->HasError( ) )
+		if( m_ServerIP.empty( ) )
 		{
-			m_ServerIP = m_Socket->GetIPString( );
-			CONSOLE_Print( "[BNET: " + m_ServerAlias + "] resolved and cached server IP address " + m_ServerIP );
+			m_Socket->Connect( m_GHost->m_BindAddress, m_Server, 6112 );
+
+			if( !m_Socket->HasError( ) )
+			{
+				m_ServerIP = m_Socket->GetIPString( );
+				CONSOLE_Print( "[BNET: " + m_ServerAlias + "] resolved and cached server IP address " + m_ServerIP );
+			}
+		}
+		else
+		{
+			// use cached server IP address since resolving takes time and is blocking
+
+			CONSOLE_Print( "[BNET: " + m_ServerAlias + "] using cached server IP address " + m_ServerIP );
+			m_Socket->Connect( m_GHost->m_BindAddress, m_ServerIP, 6112 );
 		}
 
 		m_WaitingToConnect = false;
@@ -1558,7 +1568,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				//!dl
 				//
 
-				if(Command == "dl" && !Payload.empty())
+				if(Command == "dl" && !Payload.empty() )
 				{
 					if (!RootAdminCheck)
 					{
@@ -1597,7 +1607,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				//!dlmap
 				//
 
-				else if(Command == "dlmap" && !Payload.empty())
+				else if( Command == "dlmap" && !Payload.empty() )
 				{
 					if (!RootAdminCheck)
 					{
@@ -1620,7 +1630,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				//!dlmapcfg
 				//
 
-				else if(Command == "dlmapcfg" && !Payload.empty() )
+				else if( Command == "dlmapcfg" && !Payload.empty() )
 				{
 					if (!RootAdminCheck)
 					{
@@ -1955,7 +1965,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !DELBD
 				//
 
-				else if (Command == "unband" || Command == "delband" || Command == "delbd")
+				else if ( ( Command == "unband" || Command == "delband" || Command == "delbd") )
 				{
 					uint32_t Day = 0;
 					if (!Payload.empty())
@@ -1972,7 +1982,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !TBR
 				//
 
-				else if (Command == "tbr")
+				else if ( Command == "tbr" )
 				{
 					if (!RootAdminCheck)
 					{
@@ -2290,7 +2300,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !AH
 				//
 
-				else if( Command == "autohost" || Command == "ah" )
+				else if( ( Command == "autohost" || Command == "ah" ) )
 				{
 					if( IsRootAdmin( User ) )
 					{
@@ -2371,7 +2381,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !AHMM
 				//
 
-				else if( Command == "autohostmm" || Command == "ahmm" )
+				else if( ( Command == "autohostmm" || Command == "ahmm" ) )
 				{
 					if( IsRootAdmin( User ) )
 					{
@@ -2466,7 +2476,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !AHL
 				//
 
-				else if( Command == "autohostl" || Command == "ahl" )
+				else if( ( Command == "autohostl" || Command == "ahl" ) )
 				{
 					if( IsRootAdmin( User ) )
 					{
@@ -2540,7 +2550,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !AHG
 				//
 
-				else if( Command == "autohostg" || Command == "ahg" )
+				else if( ( Command == "autohostg" || Command == "ahg" ) )
 				{
 					if( IsRootAdmin( User ) )
 					{
@@ -2825,7 +2835,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !DBS
 				//
 
-				else if( Command == "dbstatus" || Command == "dbs" )
+				else if( ( Command == "dbstatus" || Command == "dbs" ) )
 					QueueChatCommand( m_GHost->m_DB->GetStatus( ), User, Whisper );
 
 				//
@@ -2923,7 +2933,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !DRD (turn dynamic latency on or off)
 				//
 
-				else if( Command == "drd" || Command == "dlatency" || Command == "ddr")
+				else if( ( Command == "drd" || Command == "dlatency" || Command == "ddr") )
 				{
 					if (Payload.empty())
 					{
@@ -2952,7 +2962,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !D
 				//
 
-				else if( Command == "disable" || Command == "d" )
+				else if( ( Command == "disable" || Command == "d" ) )
 				{
 					if( IsRootAdmin( User ) )
 					{
@@ -2969,7 +2979,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !E
 				//
 
-				else if( Command == "enable" || Command == "e" )
+				else if( ( Command == "enable" || Command == "e" ) )
 				{
 					if( IsRootAdmin( User ) )
 					{
@@ -3009,9 +3019,9 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 								return;
 							QueueChatCommand( tr( "lang_0083", "$DESCRIPTION$", m_GHost->m_Games[GameNumber]->GetDescription( ) ), User, Whisper ); // EndingGame
 							CONSOLE_Print( "[GAME: " + m_GHost->m_Games[GameNumber]->GetGameName( ) + "] is over (admin ended game)" );
-							m_GHost->m_Games[GameNumber]->SendAllChat(tr("lang_1130")); // Game will end in 5 seconds
+							m_GHost->m_Games[GameNumber]->SendAllChat(tr("lang_1130")); // Game will end in 10 seconds
 							m_GHost->m_Games[GameNumber]->m_GameEndCountDownStarted = true;
-							m_GHost->m_Games[GameNumber]->m_GameEndCountDownCounter = 5;
+							m_GHost->m_Games[GameNumber]->m_GameEndCountDownCounter = 10;
 							m_GHost->m_Games[GameNumber]->m_GameEndLastCountDownTicks = GetTicks();
 	//						m_GHost->m_Games[GameNumber]->StopPlayers( "was disconnected (admin ended game)" );
 						}
@@ -3054,7 +3064,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !Q
 				//
 
-				else if( Command == "exit" || Command == "quit" || Command == "q" )
+				else if( ( Command == "exit" || Command == "quit" || Command == "q" ) )
 				{
 					if (!CMDCheck(CMD_quit, AdminAccess))
 					{
@@ -3090,7 +3100,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !GFS
 				//
 
-				else if( Command == "getfriends" || Command == "gfs" )
+				else if( ( Command == "getfriends" || Command == "gfs" ) )
 				{
 					SendGetFriendsList( );
 					QueueChatCommand( tr("lang_0151"), User, Whisper ); // UpdatingFriendsList
@@ -3117,7 +3127,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !GGS
 				//
 
-				else if( Command == "getgames" || Command == "ggs" )
+				else if( ( Command == "getgames" || Command == "ggs" ) )
 				{
 					if ( m_PasswordHashType == "pvpgn")
 					{
@@ -3144,7 +3154,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !UM
 				//
 
-				else if( ( Command == "unmute" || Command == "um" ) && !Payload.empty( ) && m_GHost->m_CurrentGame)
+				else if( ( Command == "unmute" || Command == "um" ) && !Payload.empty( ) && m_GHost->m_CurrentGame )
 				{
 					CGamePlayer *LastMatch = NULL;
 					uint32_t Matches = m_GHost->m_CurrentGame->GetPlayerFromNamePartial( Payload, &LastMatch );
@@ -3168,7 +3178,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !M
 				//
 
-				else if( ( Command == "mute" || Command == "m" ) && !Payload.empty( ) && m_GHost->m_CurrentGame)
+				else if( ( Command == "mute" || Command == "m" ) && !Payload.empty( ) && m_GHost->m_CurrentGame )
 				{
 					CGamePlayer *LastMatch = NULL;
 					uint32_t Matches = m_GHost->m_CurrentGame->GetPlayerFromNamePartial( Payload, &LastMatch );
@@ -3312,8 +3322,8 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 
 								for( directory_iterator i( MapCFGPath ); i != EndIterator; i++ )
 								{
-									string FileName = i->path().filename().string();
-									string Stem = i->path( ).stem( ).string();
+									string FileName = i->path( ).filename( ).string( );
+									string Stem = i->path( ).stem( ).string( );
 									transform( FileName.begin( ), FileName.end( ), FileName.begin( ), (int(*)(int))tolower );
 									transform( Stem.begin( ), Stem.end( ), Stem.begin( ), (int(*)(int))tolower );
 
@@ -3323,9 +3333,9 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 										Matches++;
 
 										if( FoundMapConfigs.empty( ) )
-											FoundMapConfigs =i->path().filename().string();
+											FoundMapConfigs = i->path( ).filename( ).string( );
 										else
-											FoundMapConfigs += ", " + i->path().filename().string();
+											FoundMapConfigs += ", " + i->path( ).filename( ).string( );
 
 										// if the pattern matches the filename exactly, with or without extension, stop any further matching
 
@@ -3341,7 +3351,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 									QueueChatCommand( tr("lang_0176"), User, Whisper ); // NoMapConfigsFound
 								else if( Matches == 1 )
 								{
-									string File = LastMatch.filename( ).string();
+									string File = LastMatch.filename( ).string( );
 									QueueChatCommand( tr( "lang_0029", "$FILE$", m_GHost->m_MapCFGPath + File ), User, Whisper ); // LoadingConfigFile
 									CConfig MapCFG;
 									MapCFG.Read( LastMatch.string( ) );
@@ -3366,7 +3376,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !ML
 				//
 
-				else if( Command == "loadl" || Command == "ll" || Command == "mapl" || Command == "ml" )
+				else if( ( Command == "loadl" || Command == "ll" || Command == "mapl" || Command == "ml" ) )
 				{
 					if( Payload.empty( ) )
 						QueueChatCommand( tr( "lang_0093", "$MAPCFG$", m_GHost->m_Map->GetCFGFile( ) ), User, Whisper ); // CurrentlyLoadedMapCFGIs
@@ -3469,8 +3479,8 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 
 								for( directory_iterator i( MapPath ); i != EndIterator; i++ )
 								{
-									string FileName = i->path().filename().string();
-									string Stem = i->path( ).stem( ).string();
+									string FileName = i->path( ).filename( ).string( );
+									string Stem = i->path( ).stem( ).string( );
 									transform( FileName.begin( ), FileName.end( ), FileName.begin( ), (int(*)(int))tolower );
 									transform( Stem.begin( ), Stem.end( ), Stem.begin( ), (int(*)(int))tolower );
 
@@ -3480,9 +3490,9 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 										Matches++;
 
 										if( FoundMaps.empty( ) )
-											FoundMaps = i->path().filename().string();
+											FoundMaps = i->path( ).filename( ).string( );
 										else
-											FoundMaps += ", " + i->path().filename().string();
+											FoundMaps += ", " + i->path( ).filename( ).string( );
 
 										// if the pattern matches the filename exactly, with or without extension, stop any further matching
 
@@ -3498,7 +3508,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 									QueueChatCommand( tr("lang_0173"), User, Whisper ); // NoMapsFound
 								else if( Matches == 1 )
 								{
-									string File = LastMatch.filename( ).string();
+									string File = LastMatch.filename( ).string( );
 									QueueChatCommand( tr("lang_0029", File ), User, Whisper ); // LoadingConfigFile
 
 									// hackhack: create a config file in memory with the required information to load the map
@@ -3574,8 +3584,8 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 
 								for( directory_iterator i( MapPath ); i != EndIterator; i++ )
 								{
-									string FileName =i->path().filename().string();
-									string Stem = i->path( ).stem( ).string();
+									string FileName = i->path( ).filename( ).string( );
+									string Stem = i->path( ).stem( ).string( );
 									transform( FileName.begin( ), FileName.end( ), FileName.begin( ), (int(*)(int))tolower );
 									transform( Stem.begin( ), Stem.end( ), Stem.begin( ), (int(*)(int))tolower );
 
@@ -3585,9 +3595,9 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 										Matches++;
 
 										if( FoundMaps.empty( ) )
-											FoundMaps = i->path().filename().string();
+											FoundMaps = i->path( ).filename( ).string( );
 										else
-											FoundMaps += ", " + i->path().filename().string();
+											FoundMaps += ", " + i->path( ).filename( ).string( );
 
 										// if the pattern matches the filename exactly, with or without extension, stop any further matching
 
@@ -3603,7 +3613,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 									QueueChatCommand( tr("lang_0173"), User, Whisper ); // NoMapsFound
 								else if( Matches == 1 )
 								{
-									string File = LastMatch.filename( ).string();
+									string File = LastMatch.filename( ).string( );
 									File = m_GHost->m_MapPath+File;
 
 									if( remove( File.c_str()) != 0 )
@@ -3748,7 +3758,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !PDL
 				//
 
-				else if ( ( Command=="pubdl" || Command == "pdl" ) && !Payload.empty())
+				else if ( ( Command=="pubdl" || Command == "pdl" ) && !Payload.empty() )
 				{
 					if (!CMDCheck(CMD_host, AdminAccess))
 					{
@@ -3765,7 +3775,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				//
 
 				else if  (( Command.length()>=6) && ( Command.substr(0,4) == "pubn" ) &&
-					 (((Command.length()-4) % 2)==0))
+					 (((Command.length()-4) % 2)==0) )
 				{
 					if (!CMDCheck(CMD_host, AdminAccess))
 					{
@@ -3869,7 +3879,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !PUBxx (host public game) xx=country name (ex: RO), accepts only players from that country
 				//
 
-				else if  (( Command.length()>=5) && ( Command != "pubby" ) && ( Command != "pubdl" ) && ( Command.substr(0,3) == "pub" ))
+				else if  (( Command.length()>=5) && ( Command != "pubby" ) && ( Command != "pubdl" ) && ( Command.substr(0,3) == "pub" ) )
 				{
 					if (!CMDCheck(CMD_host, AdminAccess))
 					{
@@ -3973,7 +3983,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !P
 				//
 
-				else if( Command == "pub" || Command == "p" )
+				else if( ( Command == "pub" || Command == "p" ) )
 				{
 					if (!CMDCheck(CMD_host, AdminAccess))
 					{
@@ -4065,7 +4075,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !PA
 				//
 
-				else if( Command == "pubauto" || Command == "pa" )
+				else if( ( Command == "pubauto" || Command == "pa" ) )
 				{
 					if (!CMDCheck(CMD_host, AdminAccess))
 					{
@@ -4161,7 +4171,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !PG
 				//
 
-				else if( Command == "pubg" || Command == "pg" )
+				else if( ( Command == "pubg" || Command == "pg" ) )
 				{
 					if (!CMDCheck(CMD_host, AdminAccess))
 					{
@@ -4298,7 +4308,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 
 								for( directory_iterator i( MapPath ); i != EndIterator; i++ )
 								{
-									string FileName = i->filename( );
+									string FileName = i->path( ).filename( ).string( );
 									transform( FileName.begin( ), FileName.end( ), FileName.begin( ), (int(*)(int))tolower );
 									bool Matched = false;
 
@@ -4316,9 +4326,9 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 										Matches++;
 
 										if( FoundMaps.empty( ) )
-											FoundMaps = i->filename( );
+											FoundMaps = i->path( ).filename( ).string( );
 										else
-											FoundMaps += ", " + i->filename( );
+											FoundMaps += ", " + i->path( ).filename( ).string( );
 									}
 								}
 
@@ -4326,7 +4336,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 									QueueChatCommand( m_GHost->m_Language->NoMapsFound( ), User, Whisper );
 								else if( Matches == 1 )
 								{
-									string File = LastMatch.filename( );
+									string File = LastMatch.filename( ).string( );
 
 									// we have to be careful here because we didn't copy the map data when creating the game (there's only one global copy)
 									// therefore if we change the map data while a game is in the lobby everything will get screwed up
@@ -4377,7 +4387,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !REFRESH
 				//
 
-				else if( Command == "rb" || Command == "refresh")
+				else if( ( Command == "rb" || Command == "refresh") )
 				{
 					m_LastBanRefreshTime = GetTime() - 3600;
 					m_LastAdminRefreshTime = GetTime() - 300;
@@ -4530,7 +4540,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 					else
 						QueueChatCommand( tr("lang_0005"), User, Whisper );
 				}
-
+/*
 				//
 				// !SP
 				//
@@ -4551,7 +4561,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 					else
 						QueueChatCommand( tr("lang_0124"), User, Whisper );
 				}
-
+*/
 				//
 				// !START
 				//
@@ -4829,11 +4839,11 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 						QueueChatCommand(  tr("lang_1085", m_GHost->m_CurrentGame->m_Providers)); // "Provider check enabled, allowed provider: "+m_GHost->m_CurrentGame->m_Providers
 					}
 				}
-*/
+
 				//
 				// !Marsauto
 				//
-/*
+
 				else if( Command == "marsauto")
 				{
 					string msg = tr("lang_1086"); // Auto insult
@@ -4850,7 +4860,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				//
 				// !Mars
 				//
-/*
+
 				else if( Command == "mars" && (GetTime()-m_LastMars>=10))
 				{
 					if (m_GHost->m_Mars.size()==0)
@@ -4925,7 +4935,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 						QueueChatCommand( msg );
 					}
 				}
-				*/
+*/				
 				//
 				// !LS
 				//
@@ -4967,7 +4977,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !ACCESS , !ACCLST, !ACC, !A
 				//
 
-				else if( ( Command == "access" || Command == "acc" || Command == "acclst" || Command == "a" ) && RootAdminCheck)
+				else if( ( Command == "access" || Command == "acc" || Command == "acclst" || Command == "a" ) && RootAdminCheck )
 				{
 				// show available commands
 					if (Payload.empty() || Command == "acclst")
@@ -5142,7 +5152,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !VB
 				//
 
-				else if( Command == "verbose" || Command == "vb" )
+				else if( ( Command == "verbose" || Command == "vb" ) )
 				{
 					m_GHost->m_Verbose = !m_GHost->m_Verbose;
 					if (m_GHost->m_Verbose)
@@ -5166,7 +5176,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !RCFG
 				//
 
-				else if( Command == "reloadcfg" || Command == "rcfg" )
+				else if( ( Command == "reloadcfg" || Command == "rcfg" ) )
 				{
 					m_GHost->ReloadConfig();
 					QueueChatCommand( tr("lang_1104"), User, Whisper); // "GHOST.CFG loaded!"
@@ -5177,7 +5187,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !DLDS
 				//
 
-				else if( Command == "downloads" || Command == "dlds" )
+				else if( ( Command == "downloads" || Command == "dlds" ) )
 				{
 					m_GHost->m_AllowDownloads = !m_GHost->m_AllowDownloads;
 					if (m_GHost->m_AllowDownloads)
@@ -5191,7 +5201,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !DLI
 				//
 
-				else if( Command == "dlinfo" || Command == "dli" )
+				else if( ( Command == "dlinfo" || Command == "dli" ) )
 				{
 					if (Payload.empty())
 						m_GHost->m_ShowDownloadsInfo = !m_GHost->m_ShowDownloadsInfo;
@@ -5262,7 +5272,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !GNS
 				//
 
-				else if( Command == "getnames" || Command == "gns" )
+				else if( ( Command == "getnames" || Command == "gns" ) )
 				{
 					string GameList = tr("lang_1113")+" ";  //"Lobby: ";
 					if( m_GHost->m_CurrentGame )
@@ -5283,8 +5293,8 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !GET
 				//
 
-//				else if( Command == "get" && !Payload.empty())
-//				{
+				else if( Command == "get" && !Payload.empty() )
+				{
 /*
 					CConfig CFGF;
 					CConfig *CFG;
@@ -5297,7 +5307,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 					else
 						QueueChatCommand(Payload+" is not a config variable!");
 */
-/*					string line;
+					string line;
 					uint32_t idx = 0;
 					uint32_t commidx = 0;
 					vector<string> newcfg;
@@ -5391,7 +5401,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !SET
 				//
 
-				else if( Command == "set" && !Payload.empty())
+				else if( Command == "set" && !Payload.empty() )
 				{
 					// get the var and value from payload, ex: !set bot_log g.txt
 					string VarName;
@@ -5434,7 +5444,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 					}
 */
 //					QueueChatCommand(Payload+"="+var);
-/*
+
 					string line;
 					uint32_t idx = 0;
 					uint32_t commidx = 0;
@@ -5518,7 +5528,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !SETNEW
 				//
 
-				else if( Command == "setnew" && !Payload.empty())
+				else if( Command == "setnew" && !Payload.empty() )
 				{
 					// get the var and value from payload, ex: !set bot_log g.txt
 					string VarName;
@@ -5562,7 +5572,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 					*/
 					//					QueueChatCommand(Payload+"="+var);
 
-/*					string line;
+					string line;
 					uint32_t idx = 0;
 					uint32_t commidx = 0;
 					vector<string> newcfg;
@@ -5640,13 +5650,13 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 						m_GHost->ReloadConfig();
 
 				}
-*/
+
 				//
 				// !UNHOST
 				// !UH
 				//
 
-				else if( Command == "unhost" || Command == "uh" )
+				else if( ( Command == "unhost" || Command == "uh" ) )
 				{
 					if( m_GHost->m_CurrentGame )
 					{
@@ -5674,7 +5684,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !WS
 				//
 
-				else if( Command == "wardenstatus" || Command == "ws" )
+				else if( ( Command == "wardenstatus" || Command == "ws" ) )
 				{
 					if( m_BNLSClient )
 						QueueChatCommand( tr("lang_1116", "$TOTALWARDEN$", UTIL_ToString( m_BNLSClient->GetTotalWardenIn( ) ), "$TOTALWARDENOUT$", UTIL_ToString( m_BNLSClient->GetTotalWardenOut( ) )), User, Whisper ); // "WARDEN STATUS --- " + UTIL_ToString( m_BNLSClient->GetTotalWardenIn( ) ) + " requests received, " + UTIL_ToString( m_BNLSClient->GetTotalWardenOut( ) ) + " responses sent."
@@ -5725,7 +5735,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !AB
 				//
 
-				else if( Command == "autoban" || Command == "ab" )
+				else if( ( Command == "autoban" || Command == "ab" ) )
 				{
 					if (m_GHost->m_AutoBan)
 					{
@@ -5743,7 +5753,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !TOPC
 				//
 
-				else if( Command == "topc")
+				else if( Command == "topc" )
 				{
 					if (!RootAdminCheck)
 					{
@@ -5805,7 +5815,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !safeimmune
 				//
 
-				else if( Command == "safeimmune" || Command =="si" || Command == "sk" )
+				else if( ( Command == "safeimmune" || Command =="si" || Command == "sk" ) )
 				{
 					string mess;
 					if (!m_GHost->m_SafeLobbyImmunity)
@@ -5835,7 +5845,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !L
 				//
 
-				else if( Command == "language" || Command == "l" )
+				else if( ( Command == "language" || Command == "l" ) )
 				{
 					delete m_Language;
 					m_Language = new CLanguage( m_GHost->m_LanguageFile );
@@ -5996,7 +6006,7 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 				// !V
 				//
 
-				else if( Command == "version" || Command == "v" )
+				else if( ( Command == "version" || Command == "v" ) )
 				{
 					if( IsAdmin( User ) || IsRootAdmin( User ) )
 						QueueChatCommand( tr("lang_0036", m_GHost->m_Version ), User, Whisper ); // VersionAdmin

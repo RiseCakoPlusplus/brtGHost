@@ -27,6 +27,7 @@
 #include "map.h"
 #include "gameplayer.h"
 #include "gameprotocol.h"
+#include "gcbiprotocol.h"
 #include "gpsprotocol.h"
 #include "game_base.h"
 #include "ghostdb.h"
@@ -44,6 +45,7 @@ CPotentialPlayer :: CPotentialPlayer( CGHost* nGHost, CGameProtocol *nProtocol, 
 	m_DeleteMe = false;
 	m_Error = false;
 	m_IncomingJoinPlayer = NULL;
+	m_IncomingGarenaUser = NULL;
 	m_LAN = false;
 	m_LANSet = false;
 }
@@ -60,6 +62,16 @@ CPotentialPlayer :: ~CPotentialPlayer( )
 	}
 
 	delete m_IncomingJoinPlayer;
+	delete m_IncomingGarenaUser;
+}
+
+BYTEARRAY CPotentialPlayer :: GetGarenaIP( )
+{
+	if( m_IncomingGarenaUser == NULL ) {
+		return UTIL_CreateByteArray( (uint32_t) 0, true );
+	} else {
+		return UTIL_CreateByteArray( m_IncomingGarenaUser->GetIP( ), true );
+	}
 }
 
 BYTEARRAY CPotentialPlayer :: GetExternalIP( )
@@ -169,7 +181,7 @@ void CPotentialPlayer :: ExtractPackets( )
 
 	while( Bytes.size( ) >= 4 )
 	{
-		if( Bytes[0] == W3GS_HEADER_CONSTANT || Bytes[0] == GPS_HEADER_CONSTANT )
+		if( Bytes[0] == W3GS_HEADER_CONSTANT || Bytes[0] == GPS_HEADER_CONSTANT || Bytes[0] == GCBI_HEADER_CONSTANT )
 		{
 			// bytes 2 and 3 contain the length of the packet
 
@@ -235,6 +247,16 @@ void CPotentialPlayer :: ProcessPackets( )
 				return;
 			}
 		}
+		
+		else if( Packet->GetPacketType( ) == GCBI_HEADER_CONSTANT )
+		{
+			if( Packet->GetID( ) == CGCBIProtocol :: GCBI_INIT )
+			{
+				delete m_IncomingGarenaUser;
+				m_IncomingGarenaUser = m_Game->m_GHost->m_GCBIProtocol->RECEIVE_GCBI_INIT( Packet->GetData( ) );
+				CONSOLE_Print( "[GCBI] Garena user detected; userid=" + UTIL_ToString( m_IncomingGarenaUser->GetUserID( ) ) + ", roomid=" + UTIL_ToString( m_IncomingGarenaUser->GetRoomID( ) ) + ", experience=" + UTIL_ToString( m_IncomingGarenaUser->GetUserExp( ) ) + ", country=" + m_IncomingGarenaUser->GetCountryCode( ) );
+			}
+		}
 
 		delete Packet;
 	}
@@ -291,7 +313,7 @@ CGamePlayer :: CGamePlayer( CGHost* nGHost, CGameProtocol *nProtocol, CBaseGame 
 	m_LeftMessageSent = false;
 	m_GProxy = false;
 	m_GProxyDisconnectNoticeSent = false;
-	m_GProxyReconnectKey = GetTicks( );
+	m_GProxyReconnectKey = rand( );
 	m_LastGProxyAckTime = 0;
 	m_DownloadInfo = string();
 	m_ScoreSet = false;
@@ -369,7 +391,7 @@ CGamePlayer :: CGamePlayer(CGHost* nGHost, CPotentialPlayer *potential, unsigned
 	m_LeftMessageSent = false;
 	m_GProxy = false;
 	m_GProxyDisconnectNoticeSent = false;
-	m_GProxyReconnectKey = GetTicks( );
+	m_GProxyReconnectKey = rand( );
 	m_LastGProxyAckTime = 0;
 	m_DownloadInfo = string();
 	m_ScoreSet = false;
@@ -462,17 +484,17 @@ string CGamePlayer :: GetShortenedRealm()
 	else if(GetJoinedRealm( ) == "asia.battle.net")
 		return "Asia";
 	else if(GetJoinedRealm( ) == "europe.battle.net")
-		return "Euro";
+		return "Euro";	
 	else
 		return "??";
 }
 
 bool CGamePlayer :: Update( void *fd )
 {
-	// wait 4 seconds after joining before sending the /whois or /w
+	// wait 5 seconds after joining before sending the /whois or /w
 	// if we send the /whois too early battle.net may not have caught up with where the player is and return erroneous results
 
-	if( m_WhoisShouldBeSent && !m_Spoofed && !m_WhoisSent && !m_JoinedRealm.empty( ) && GetTime( ) - m_JoinTime >= 4 )
+	if( m_WhoisShouldBeSent && !m_Spoofed && !m_WhoisSent && !m_JoinedRealm.empty( ) && GetTime( ) - m_JoinTime >= 5 )
 	{
 		// todotodo: we could get kicked from battle.net for sending a command with invalid characters, do some basic checking
 /*
@@ -486,7 +508,7 @@ bool CGamePlayer :: Update( void *fd )
 		}
 
 		if (!isspoofed && GetExternalIPString()!="127.0.0.1")
-*/
+*/		
 		for( vector<CBNET *> :: iterator i = m_Game->m_GHost->m_BNETs.begin( ); i != m_Game->m_GHost->m_BNETs.end( ); i++ )
 		{
 			if( (*i)->GetServer( ) == m_JoinedRealm )
@@ -566,7 +588,7 @@ void CGamePlayer :: ExtractPackets( )
 
 	while( Bytes.size( ) >= 4 )
 	{
-		if( Bytes[0] == W3GS_HEADER_CONSTANT || Bytes[0] == GPS_HEADER_CONSTANT )
+		if( Bytes[0] == W3GS_HEADER_CONSTANT || Bytes[0] == GPS_HEADER_CONSTANT || Bytes[0] == GCBI_HEADER_CONSTANT )
 		{
 			// bytes 2 and 3 contain the length of the packet
 
@@ -633,7 +655,7 @@ void CGamePlayer :: ProcessPackets( )
 			case CGameProtocol :: W3GS_GAMELOADED_SELF:
 				if( m_Protocol->RECEIVE_W3GS_GAMELOADED_SELF( Packet->GetData( ) ) )
 				{
-					if( !m_FinishedLoading )
+					if( !m_FinishedLoading && m_Game->GetGameLoading( ) )
 					{
 						m_FinishedLoading = true;
 						m_FinishedLoadingTicks = GetTicks( );

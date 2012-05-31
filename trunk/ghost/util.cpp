@@ -667,7 +667,7 @@ void ParseURL(char* url,char* protocol,int lprotocol, char* host,int lhost,char*
 	*protocol = *host = *request = 0;
 	*port=80;
 
-	work = strdup(url);
+	work = _strdup(url);
 //	work = strupr(work);
 
 	/* find protocol if any */

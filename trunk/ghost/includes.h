@@ -43,14 +43,6 @@
 #include <vector>
 #include <map>
 
-#include <boost/filesystem.hpp>
-#include <boost/date_time.hpp>
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/info_parser.hpp>
-#include <boost/filesystem.hpp>
-#include <boost/foreach.hpp>
-#include <boost/thread.hpp>
-
 using namespace std;
 
 typedef vector<unsigned char> BYTEARRAY;
@@ -77,7 +69,7 @@ uint32_t GetTicks( );		// milliseconds
 
 // output
 
-void CONSOLE_Print( const string& message );
+void CONSOLE_Print( string message );
 void DEBUG_Print( string message );
 void DEBUG_Print( BYTEARRAY b );
 

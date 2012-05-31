@@ -33,19 +33,6 @@ CSaveGame :: CSaveGame( ) : CPacked( )
 	m_RandomSeed = 0;
 }
 
-CSaveGame :: CSaveGame( string nFileName, string nFileNameNoPath, string nMapPath, string nGameName, unsigned char nNumSlots, vector<CGameSlot> nSlots, vector<CGamePlayer*> nPIDs, uint32_t nRandomSeed, BYTEARRAY nCRC ) : CPacked( )
-{
-	m_FileName = nFileName;
-	m_FileNameNoPath = nFileNameNoPath;
-	m_MapPath = nMapPath;
-	m_GameName = nGameName;
-	m_NumSlots = nNumSlots;
-	m_Slots = nSlots;
-	m_PIDs = nPIDs;
-	m_RandomSeed = nRandomSeed;
-	m_MagicNumber = nCRC;
-}
-
 CSaveGame :: ~CSaveGame( )
 {
 
@@ -53,58 +40,6 @@ CSaveGame :: ~CSaveGame( )
 
 #define READB( x, y, z )	(x).read( (char *)(y), (z) )
 #define READSTR( x, y )		getline( (x), (y), '\0' )
-
-string customMarkFileType = "none";
-
-void CSaveGame :: PrepareForSave()
-{
-	// Custom W3Z file format type header
-	// by freed
-
-	BYTEARRAY packet;
-
-	UTIL_AppendByteArray( packet, m_MapPath );
-	UTIL_AppendByteArray( packet, customMarkFileType, true );
-	UTIL_AppendByteArray( packet, m_GameName );
-	UTIL_AppendByteArray( packet, customMarkFileType, true );
-	UTIL_AppendByteArray( packet, customMarkFileType, true );
-
-	UTIL_AppendByteArray( packet, (uint32_t)0, false );
-	UTIL_AppendByteArray( packet, (uint32_t)0, false );
-	UTIL_AppendByteArray( packet, (uint16_t)0, false );
-
-	packet.push_back ( m_Slots.size() );
-
-	for( unsigned char i = 0; i < m_Slots.size(); i++ )
-	{
-		packet.push_back( m_Slots[i].GetPID() );
-		packet.push_back( m_Slots[i].GetDownloadStatus() );
-		packet.push_back( m_Slots[i].GetSlotStatus() );
-		packet.push_back( m_Slots[i].GetComputer() );
-		packet.push_back( m_Slots[i].GetTeam() );
-		packet.push_back( m_Slots[i].GetColour() );
-		packet.push_back( m_Slots[i].GetRace() );
-		packet.push_back( m_Slots[i].GetComputerType() );
-		packet.push_back( m_Slots[i].GetHandicap() );
-	}
-	
-	UTIL_AppendByteArray( packet, (uint32_t)m_RandomSeed, false );
-
-	packet.push_back( 0 ); // GameType
-	packet.push_back( m_PIDs.size() ); // number of player slots (non observer)
-
-	UTIL_AppendByteArray( packet, m_MagicNumber );
-
-	packet.push_back( m_PIDs.size() );
-
-	for( vector<CGamePlayer*>::iterator i = m_PIDs.begin(); i != m_PIDs.end(); ++i )
-	{
-		packet.push_back( (*i)->GetPID() );
-		UTIL_AppendByteArray( packet, (*i)->GetName(), true );
-	}
-
-    m_Decompressed = string( packet.begin( ), packet.end( ) );
-}
 
 void CSaveGame :: ParseSaveGame( )
 {
@@ -114,7 +49,6 @@ void CSaveGame :: ParseSaveGame( )
 	m_Slots.clear( );
 	m_RandomSeed = 0;
 	m_MagicNumber.clear( );
-	m_EnforcePlayers.clear();
 
 	if( m_Flags != 0 )
 	{
@@ -141,11 +75,10 @@ void CSaveGame :: ParseSaveGame( )
 	uint16_t Garbage2;
 	uint32_t Garbage4;
 	string GarbageString;
-	string idString;
 	uint32_t MagicNumber;
 
 	READSTR( ISS, m_MapPath );				// map path
-	READSTR( ISS, idString );				// ??? , mark for custom save game file
+	READSTR( ISS, GarbageString );			// ???
 	READSTR( ISS, m_GameName );				// game name
 	READSTR( ISS, GarbageString );			// ???
 	READSTR( ISS, GarbageString );			// stat string
@@ -181,26 +114,5 @@ void CSaveGame :: ParseSaveGame( )
 	}
 
 	m_MagicNumber = UTIL_CreateByteArray( MagicNumber, false );
-
-	if (idString == customMarkFileType)
-	{
-		unsigned char nPIDsize;
-
-		READB( ISS, &nPIDsize, 1 );
-		m_EnforcePlayers.resize( nPIDsize );
-
-		for ( unsigned char i = 0; i < nPIDsize; ++i)
-		{
-			unsigned char PID;
-			string playerName;
-
-			READB( ISS, &PID, 1 );
-			READSTR( ISS, playerName );
-
-			m_EnforcePlayers[i] = PIDPlayer(PID, playerName);
-		}
-
-	}
-
 	m_Valid = true;
 }

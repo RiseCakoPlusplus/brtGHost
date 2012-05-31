@@ -63,13 +63,12 @@ CIncomingJoinPlayer *CGameProtocol :: RECEIVE_W3GS_REQJOIN( BYTEARRAY data )
 	if( ValidateLength( data ) && data.size( ) >= 20 )
 	{
 		uint32_t HostCounter = UTIL_ByteArrayToUInt32( data, false, 4 );
-		uint32_t nEntryKey   = UTIL_ByteArrayToUInt32( data, false, 8 );
 		BYTEARRAY Name = UTIL_ExtractCString( data, 19 );
 
 		if( !Name.empty( ) && data.size( ) >= Name.size( ) + 30 )
 		{
 			BYTEARRAY InternalIP = BYTEARRAY( data.begin( ) + Name.size( ) + 26, data.begin( ) + Name.size( ) + 30 );
-			return new CIncomingJoinPlayer( HostCounter, nEntryKey, string( Name.begin( ), Name.end( ) ), InternalIP );
+			return new CIncomingJoinPlayer( HostCounter, string( Name.begin( ), Name.end( ) ), InternalIP );
 		}
 	}
 
@@ -675,7 +674,7 @@ BYTEARRAY CGameProtocol :: SEND_W3GS_SEARCHGAME( bool TFT, unsigned char war3Ver
 	return packet;
 }
 
-BYTEARRAY CGameProtocol :: SEND_W3GS_GAMEINFO( bool TFT, unsigned char war3Version, BYTEARRAY mapGameType, BYTEARRAY mapFlags, BYTEARRAY mapWidth, BYTEARRAY mapHeight, string gameName, string hostName, uint32_t upTime, string mapPath, BYTEARRAY mapCRC, uint32_t slotsTotal, uint32_t slotsOpen, uint16_t port, uint32_t hostCounter, uint32_t entryKey )
+BYTEARRAY CGameProtocol :: SEND_W3GS_GAMEINFO( bool TFT, unsigned char war3Version, BYTEARRAY mapGameType, BYTEARRAY mapFlags, BYTEARRAY mapWidth, BYTEARRAY mapHeight, string gameName, string hostName, uint32_t upTime, string mapPath, BYTEARRAY mapCRC, uint32_t slotsTotal, uint32_t slotsOpen, uint16_t port, uint32_t hostCounter )
 {
 	unsigned char ProductID_ROC[]	= {          51, 82, 65, 87 };	// "WAR3"
 	unsigned char ProductID_TFT[]	= {          80, 88, 51, 87 };	// "W3XP"
@@ -686,7 +685,7 @@ BYTEARRAY CGameProtocol :: SEND_W3GS_GAMEINFO( bool TFT, unsigned char war3Versi
 	BYTEARRAY packet;
 
 	if ( hostName.empty() )
-		hostName = "brtGHost"; // hackhack
+		hostName = "DotaFury"; // hackhack
 
 	if( mapGameType.size( ) == 4 && mapFlags.size( ) == 4 && mapWidth.size( ) == 2 && mapHeight.size( ) == 2 && !gameName.empty( ) && !hostName.empty( ) && !mapPath.empty( ) && mapCRC.size( ) == 4 )
 	{
@@ -717,13 +716,13 @@ BYTEARRAY CGameProtocol :: SEND_W3GS_GAMEINFO( bool TFT, unsigned char war3Versi
 
 		UTIL_AppendByteArray( packet, Version, 4 );						// Version
 		UTIL_AppendByteArray( packet, hostCounter, false );				// Host Counter
-		UTIL_AppendByteArray( packet, entryKey, false );				// Entry Key
-		UTIL_AppendByteArray( packet, gameName );						// Game Name
+		UTIL_AppendByteArray( packet, Unknown1, 4 );					// ??? (this varies wildly even between two identical games created one after another)
+		UTIL_AppendByteArray( packet, gameName );					// Game Name
 		packet.push_back( 0 );											// ??? (maybe game password)
-		UTIL_AppendByteArray( packet, StatString );						// Stat String
+		UTIL_AppendByteArray( packet, StatString );					// Stat String
 		packet.push_back( 0 );											// Stat String null terminator (the stat string is encoded to remove all even numbers i.e. zeros)
 		UTIL_AppendByteArray( packet, slotsTotal, false );				// Slots Total
-		UTIL_AppendByteArray( packet, mapGameType );					// Game Type
+		UTIL_AppendByteArray( packet, mapGameType );				// Game Type
 		UTIL_AppendByteArray( packet, Unknown2, 4 );					// ???
 		UTIL_AppendByteArray( packet, slotsOpen, false );				// Slots Open
 		UTIL_AppendByteArray( packet, upTime, false );					// time since creation
@@ -780,20 +779,21 @@ BYTEARRAY CGameProtocol :: SEND_W3GS_REFRESHGAME( uint32_t players, uint32_t pla
 	return packet;
 }
 
-BYTEARRAY CGameProtocol :: SEND_W3GS_DECREATEGAME( uint32_t HostCounter )
+BYTEARRAY CGameProtocol :: SEND_W3GS_DECREATEGAME( )
 {
+	unsigned char HostCounter[]	= { 1, 0, 0, 0 };
+
 	BYTEARRAY packet;
 	packet.push_back( W3GS_HEADER_CONSTANT );			// W3GS header constant
 	packet.push_back( W3GS_DECREATEGAME );				// W3GS_DECREATEGAME
 	packet.push_back( 0 );								// packet length will be assigned later
 	packet.push_back( 0 );								// packet length will be assigned later
-	UTIL_AppendByteArray( packet, HostCounter, false );		// Host Counter
+	UTIL_AppendByteArray( packet, HostCounter, 4 );		// Host Counter
 	AssignLength( packet );
 	// DEBUG_Print( "SENT W3GS_DECREATEGAME" );
 	// DEBUG_Print( packet );
 	return packet;
 }
-
 
 BYTEARRAY CGameProtocol :: SEND_W3GS_MAPCHECK( string mapPath, BYTEARRAY mapSize, BYTEARRAY mapInfo, BYTEARRAY mapCRC, BYTEARRAY mapSHA1 )
 {
@@ -985,10 +985,9 @@ BYTEARRAY CGameProtocol :: EncodeSlotInfo( vector<CGameSlot> &slots, uint32_t ra
 // CIncomingJoinPlayer
 //
 
-CIncomingJoinPlayer :: CIncomingJoinPlayer( uint32_t nHostCounter, uint32_t nEntryKey, string nName, BYTEARRAY &nInternalIP )
+CIncomingJoinPlayer :: CIncomingJoinPlayer( uint32_t nHostCounter, string nName, BYTEARRAY &nInternalIP )
 {
 	m_HostCounter = nHostCounter;
-	m_EntryKey = nEntryKey;
 	m_Name = nName;
 	m_InternalIP = nInternalIP;
 }

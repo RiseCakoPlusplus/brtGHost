@@ -26,6 +26,7 @@ class CCommandPacket;
 class CGameProtocol;
 class CGame;
 class CIncomingJoinPlayer;
+class CIncomingGarenaUser;
 class CGHost;
 
 //
@@ -51,6 +52,7 @@ protected:
 	bool m_LAN;
 	string m_ErrorString;
 	CIncomingJoinPlayer *m_IncomingJoinPlayer;
+	CIncomingGarenaUser *m_IncomingGarenaUser;
 
 public:
 	CPotentialPlayer( CGHost* nGHost, CGameProtocol *nProtocol, CBaseGame *nGame, CTCPSocket *nSocket );
@@ -65,10 +67,13 @@ public:
 	virtual bool GetError( )						{ return m_Error; }
 	virtual string GetErrorString( )				{ return m_ErrorString; }
 	virtual CIncomingJoinPlayer *GetJoinPlayer( )	{ return m_IncomingJoinPlayer; }
-
+	virtual CIncomingGarenaUser *GetGarenaUser( )	{ return m_IncomingGarenaUser; }
+	virtual BYTEARRAY GetGarenaIP( );
+	
 	virtual void SetSocket( CTCPSocket *nSocket )	{ m_Socket = nSocket; }
 	virtual void SetDeleteMe( bool nDeleteMe )		{ m_DeleteMe = nDeleteMe; }
-
+	virtual void SetGarenaUser( CIncomingGarenaUser *nIncomingGarenaUser ) { m_IncomingGarenaUser = nIncomingGarenaUser; }
+	
 	// processing functions
 
 	virtual bool Update( void *fd );
@@ -112,6 +117,7 @@ private:
 	uint32_t m_StartedLaggingTicks;				// GetTicks when the player started lagging
 	uint32_t m_StatsSentTime;					// GetTime when we sent this player's stats to the chat (to prevent players from spamming !stats)
 	uint32_t m_StatsDotASentTime;				// GetTime when we sent this player's dota stats to the chat (to prevent players from spamming !statsdota)
+	uint32_t m_WarnTime;						// GetTime when we warn this player for spamming
 	uint32_t m_LastGProxyWaitNoticeSentTime;
 	queue<BYTEARRAY> m_LoadInGameData;			// queued data to be sent when the player finishes loading when using "load in game"
 	uint32_t m_DOTAKills;
@@ -134,10 +140,14 @@ private:
 	bool m_Lagging;								// if the player is lagging or not (on the lag screen)
 	bool m_DropVote;							// if the player voted to drop the laggers or not (on the lag screen)
 	bool m_KickVote;							// if the player voted to kick a player or not
+	bool m_StartVote;							// if the player voted to start or not
 	bool m_RmkVote;								// if the player voted to rmk or not
 	bool m_FFVote;								// if the player voted to ff or not
 	bool m_Muted;								// if the player is muted or not
 	bool m_LeftMessageSent;						// if the playerleave message has been sent or not
+	#define MTNUM 6
+	uint32_t m_MessageTimes[MTNUM];				// ticks of the last MTNUM messages sent by the user
+	char m_MTCursor;							// cursor for MessageTimes[MTNUM]
 	bool m_GProxy;								// if the player is using GProxy++
 	bool m_GProxyDisconnectNoticeSent;			// if a disconnection notice has been sent or not when using GProxy++
 	queue<BYTEARRAY> m_GProxyBuffer;
@@ -151,7 +161,7 @@ private:
 	bool m_ABCVote;
 	int m_SwapTo;
 	uint32_t m_SwapToTime;
-	bool m_StartVote;							// if the player voted to start game
+//	bool m_StartVote;							// if the player voted to start game
 
 	string m_GameKey;
 
@@ -208,9 +218,10 @@ public:
 	bool GetLagging( )							{ return m_Lagging; }
 	bool GetDropVote( )							{ return m_DropVote; }
 	bool GetKickVote( )							{ return m_KickVote; }
+	bool GetStartVote( )						{ return m_StartVote; }
 	bool GetRmkVote( )							{ return m_RmkVote; }
 	bool GetFFVote( )							{ return m_FFVote; }
-	bool GetStartVote( )						{ return m_StartVote; }
+//	bool GetStartVote( )						{ return m_StartVote; }
 	bool GetMuted( )							{ return m_Muted; }
 	bool GetLeftMessageSent( )					{ return m_LeftMessageSent; }
 	bool GetScoreSet( )						{ return m_ScoreSet; }
@@ -248,13 +259,14 @@ public:
 	void SetDownloadAllowed( bool nDownloadAllowed )								{ m_DownloadAllowed = nDownloadAllowed; }
 	void SetDownloadStarted( bool nDownloadStarted )								{ m_DownloadStarted = nDownloadStarted; }
 	void SetDownloadFinished( bool nDownloadFinished )								{ m_DownloadFinished = nDownloadFinished; }
-	void SetDownloadInfo( string nDownloadInfo )									{ m_DownloadInfo = nDownloadInfo; }
+	void SetDownloadInfo( string nDownloadInfo )							{ m_DownloadInfo = nDownloadInfo; }
 	void SetLagging( bool nLagging )												{ m_Lagging = nLagging; }
 	void SetDropVote( bool nDropVote )												{ m_DropVote = nDropVote; }
 	void SetKickVote( bool nKickVote )												{ m_KickVote = nKickVote; }
+	void SetStartVote( bool nStartVote )											{ m_StartVote = nStartVote; }
 	void SetRmkVote( bool nRmkVote )												{ m_RmkVote = nRmkVote; }
 	void SetFFVote( bool nFFVote )													{ m_FFVote = nFFVote; }
-	void SetStartVote ( bool nStartVote )											{ m_StartVote = nStartVote; }
+//	void SetStartVote ( bool nStartVote )											{ m_StartVote = nStartVote; }
 	void SetABCVote( bool nABCVote )												{ m_ABCVote = nABCVote; }
 	void SetVoteDotaMode ( string nVoteDotaMode )									{ m_VoteDotaMode = nVoteDotaMode; }
 	void SetMuted( bool nMuted )													{ m_Muted = nMuted; }

@@ -1050,7 +1050,7 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 			// !AB
 			//
 
-			if( Command == "autoban" || Command == "ab" ) {
+			if( ( Command == "autoban" || Command == "ab" ) ) {
 				if (m_GHost->m_AutoBan) {
 					m_GHost->m_AutoBan = false;
 					SendAllChat( tr("lang_1118") ); //  Auto Ban is OFF"
@@ -1111,7 +1111,7 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 			// !QUERY
 			//
 
-			else if( ( Command == "query" || Command == "q"  ) && !Payload.empty())
+			else if( ( Command == "query" || Command == "q"  ) && !Payload.empty() )
 			{
 				if (!RootAdminCheck)
 				{
@@ -1161,7 +1161,7 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 			// !top10 !top
 			//
 
-			else if( Command == "top10" || Command =="top" )
+			else if( ( Command == "top10" || Command =="top" ) )
 			{
 				if (m_GHost->m_norank)
 				{
@@ -1175,7 +1175,7 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 			// !ACCESS , !ACCLST, !ACC
 			//
 
-			else if(( Command == "access" || Command == "acc" || Command == "acclst") && RootAdminCheck)
+			else if(( Command == "access" || Command == "acc" || Command == "acclst") && RootAdminCheck )
 			{
 				// show available commands
 				if (Payload.empty() || Command == "acclst")
@@ -2361,7 +2361,7 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 			// !ANNOUNCE
 			//
 
-			else if( Command == "announce" && !m_CountDownStarted )
+			else if( ( Command == "announce" && !m_CountDownStarted ) )
 			{
 				if( Payload.empty( ) || Payload == "off" )
 				{
@@ -2404,7 +2404,7 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 			// !AUTOSAVE
 			//
 
-			else if( Command == "autosave" )
+			else if( ( Command == "autosave" ) )
 			{
 				if( Payload == "on" )
 				{
@@ -3193,7 +3193,7 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 			// !DLINFO
 			//
 
-			else if( ( Command == "dlinfo" ))
+			else if( ( Command == "dlinfo" ) )
 			{
 				if (Payload.empty())
 					m_GHost->m_ShowDownloadsInfo = !m_GHost->m_ShowDownloadsInfo;
@@ -3281,7 +3281,7 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 							CONSOLE_Print( "[GAME: " + m_GameName + "] is over (admin ended game)" );
 							SendAllChat(tr("lang_1168")); // "Game will end in 5 seconds"
 							m_GameEndCountDownStarted = true;
-							m_GameEndCountDownCounter = 5;
+							m_GameEndCountDownCounter = 10;
 							m_GameEndLastCountDownTicks = GetTicks();
 						}
 
@@ -3373,6 +3373,11 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 							winnerString = "[SCOURGE]";
 							RequestedWinner = 2;
 						}
+						else if ( Payload == "0" )
+						{
+							winnerString = "[DRAW]";
+							RequestedWinner = 0;
+						}
 					}
 
 					if ( !RequestedWinner )
@@ -3387,11 +3392,11 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 						if (m_Slots[GetSIDFromPID(player->GetPID())].GetTeam()!=m_EndRequestedTeam)
 						{
 							CONSOLE_Print( "[GAME: " + m_GameName + "] is over (admin ended game)" );
-							SendAllChat(tr("lang_1168")); // Game will end in 5 seconds"
+							SendAllChat(tr("lang_1168")); // Game will end in 10 seconds"
 							m_GameEndCountDownStarted = true;
-							m_GameEndCountDownCounter = 5;
+							m_GameEndCountDownCounter = 10;
 							m_GameEndLastCountDownTicks = GetTicks();
-							m_Stats->SetWinner(m_RequestedWinner);
+							m_Stats->SetWinner(0);
 							return HideCommand;
 						}
 					}
@@ -3432,11 +3437,11 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 					
 					
 					CONSOLE_Print( "[GAME: " + m_GameName + "] is over (admin ended game)" );
-					SendAllChat(tr("lang_1168")); // "Game will end in 5 seconds"
+					SendAllChat(tr("lang_1168")); // "Game will end in 10 seconds"
 					m_GameEndCountDownStarted = true;
-					m_GameEndCountDownCounter = 5;
+					m_GameEndCountDownCounter = 10;
 					m_GameEndLastCountDownTicks = GetTicks();
-					m_Stats->SetWinner(m_RequestedWinner);
+					m_Stats->SetWinner(0);
 					return HideCommand;
 				}
 
@@ -3446,9 +3451,9 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 					if (m_Slots[GetSIDFromPID(player->GetPID())].GetTeam()!=m_EndRequestedTeam)
 					{
 						CONSOLE_Print( "[GAME: " + m_GameName + "] is over (admin ended game)" );
-						SendAllChat(tr("lang_1168")); // Game will end in 5 seconds"
+						SendAllChat(tr("lang_1168")); // Game will end in 10 seconds"
 						m_GameEndCountDownStarted = true;
-						m_GameEndCountDownCounter = 5;
+						m_GameEndCountDownCounter = 10;
 						m_GameEndLastCountDownTicks = GetTicks();
 						return HideCommand;	
 					}
@@ -3491,9 +3496,9 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 				}
 
 				CONSOLE_Print( "[GAME: " + m_GameName + "] is over (admin ended game)" );
-				SendAllChat(tr("lang_1168")); // "Game will end in 5 seconds"
+				SendAllChat(tr("lang_1168")); // "Game will end in 10 seconds"
 				m_GameEndCountDownStarted = true;
-				m_GameEndCountDownCounter = 5;
+				m_GameEndCountDownCounter = 10;
 				m_GameEndLastCountDownTicks = GetTicks();
 //				StopPlayers( "was disconnected (admin ended game)" );
 				return HideCommand;
@@ -3503,7 +3508,7 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 			// !FW
 			//
 
-			else if(Command == "fw" && !m_GHost->m_BNETs.empty( ))
+			else if(Command == "fw" && !m_GHost->m_BNETs.empty( ) )
 			{
 				string sMsg = Payload;
 				if (sMsg.empty())
@@ -4213,7 +4218,7 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 			// !F
 			//
 
-			else if( Command == "from" || Command == "f" )
+			else if( ( Command == "from" || Command == "f" ) )
 			{
 				string Froms;
 				string Froms2;
@@ -4279,7 +4284,7 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 			// !REALM
 			// !R
 			//
-			else if( Command == "realm" || Command == "r")
+			else if( ( Command == "realm" || Command == "r") )
 			{
 				string Froms;
 				string Froms2;
@@ -4344,7 +4349,7 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 			// !SILENCE
 			//
 
-			else if( (Command == "silence" || Command == "sil"))
+			else if( (Command == "silence" || Command == "sil") )
 			{
 				player->SetSilence(!player->GetSilence());
 				if (player->GetSilence())
@@ -4358,7 +4363,7 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 			// !UM
 			//
 
-			else if( (Command == "unmute" || Command =="um") && !Payload.empty( ))
+			else if( (Command == "unmute" || Command =="um") && !Payload.empty( ) )
 			{
 				if (!CMDCheck(CMD_mute, AdminAccess))
 				{
@@ -4396,7 +4401,7 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 			// !M
 			//
 
-			else if( ( Command == "mute" || Command == "m" ) && !Payload.empty( ))
+			else if( ( Command == "mute" || Command == "m" ) && !Payload.empty( ) )
 			{
 				if (!CMDCheck(CMD_mute, AdminAccess))
 				{
@@ -4644,7 +4649,7 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 			// !DRD (turn dynamic latency on or off)
 			//
 
-			else if( Command == "drd" || Command == "dlatency" || Command == "ddr")
+			else if( ( Command == "drd" || Command == "dlatency" || Command == "ddr") )
 			{
 				if (Payload.empty())
 				{
@@ -4672,7 +4677,7 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 			// !LATENCY (set game latency)
 			//
 
-			else if( Command == "latency" || Command == "dr")
+			else if( ( Command == "latency" || Command == "dr") )
 			{
 				if( Payload.empty( ) )
 				{
@@ -4844,13 +4849,19 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 				else
 					SendAllChat( tr( "lang_0120", m_OwnerName ) ); // UnableToSetGameOwner
 			}
-
+			
 			//
 			// !PING
-			// !P
 			//
 
-			else if( Command == "ping" || Command == "p" )
+			else if( Command == "ping" )
+			SendChat( player,  player->GetNumPings( ) > 0 ? UTIL_ToString( player->GetPing( m_GHost->m_LCPings ) ) + tr("lang_1017") : tr("lang_1018")); // "ms" : "N/A"
+
+			//
+			// !PINGALL
+			// 
+
+			else if( Command == "pingall" )
 			{
 				// kick players with ping higher than payload if payload isn't empty
 				// we only do this if the game hasn't started since we don't want to kick players from a game in progress
@@ -5317,7 +5328,10 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 					// so if we try to send accurate numbers it'll always be off by one and results in Warcraft 3 assuming the game is full when it still needs one more player
 					// the easiest solution is to simply send 12 for both so the game will always show up as (1/12) players
 
-					uint32_t FixedHostCounter = m_HostCounter & 0x0FFFFFFF;
+			uint32_t slotstotal = m_Slots.size( );
+			uint32_t slotsopen = GetSlotsOpen();
+			if (slotsopen<2) slotsopen = 2;
+			if(slotstotal > 12) slotstotal = 12;
 
 					// construct the correct W3GS_GAMEINFO packet
 
@@ -5333,17 +5347,17 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 						MapHeight.push_back( 0 );
 						MapHeight.push_back( 0 );
 
-						m_GHost->m_UDPSocket->SendTo( IP, Port, m_Protocol->SEND_W3GS_GAMEINFO( m_GHost->m_TFT, m_GHost->m_LANWar3Version, UTIL_CreateByteArray( MapGameType, false ), m_Map->GetMapGameFlags( ), MapWidth, MapHeight, m_GameName, m_CreatorName, GetTime( ) - m_CreationTime, "Save\\Multiplayer\\" + m_SaveGame->GetFileNameNoPath( ), m_SaveGame->GetMagicNumber( ), 12, 12, m_HostPort, FixedHostCounter, m_EntryKey ) );
+						m_GHost->m_UDPSocket->SendTo( IP, Port, m_Protocol->SEND_W3GS_GAMEINFO( m_GHost->m_TFT, m_GHost->m_LANWar3Version, UTIL_CreateByteArray( MapGameType, false ), m_Map->GetMapGameFlags( ), MapWidth, MapHeight, m_GameName, m_CreatorName, GetTime( ) - m_CreationTime, "Save\\Multiplayer\\" + m_SaveGame->GetFileNameNoPath( ), m_SaveGame->GetMagicNumber( ), slotstotal, slotsopen, m_HostPort, m_HostCounter ) );
 					}
 					else
 					{
 						uint32_t MapGameType = MAPGAMETYPE_UNKNOWN0;
 
-						m_GHost->m_UDPSocket->SendTo( IP, Port, m_Protocol->SEND_W3GS_GAMEINFO( m_GHost->m_TFT, m_GHost->m_LANWar3Version, UTIL_CreateByteArray( MapGameType, false ), m_Map->GetMapGameFlags( ), m_Map->GetMapWidth( ), m_Map->GetMapHeight( ), m_GameName, m_CreatorName, GetTime( ) - m_CreationTime, m_Map->GetMapPath( ), m_Map->GetMapCRC( ), 12, 12, m_HostPort, FixedHostCounter, m_EntryKey ) );
+						m_GHost->m_UDPSocket->SendTo( IP, Port, m_Protocol->SEND_W3GS_GAMEINFO( m_GHost->m_TFT, m_GHost->m_LANWar3Version, UTIL_CreateByteArray( MapGameType, false ), m_Map->GetMapGameFlags( ), m_Map->GetMapWidth( ), m_Map->GetMapHeight( ), m_GameName, m_CreatorName, GetTime( ) - m_CreationTime, m_Map->GetMapPath( ), m_Map->GetMapCRC( ), slotstotal, slotsopen, m_HostPort, m_HostCounter ) );
 					}
 				}
 			}
-
+/*
 			//
 			// !Marsauto
 			//
@@ -5456,7 +5470,7 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 					return HideCommand;
 				string Victim = LastMatch->GetName();
 
-/*
+
 				string Object;
 				stringstream SS;
 				SS << Payload;
@@ -5468,7 +5482,7 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 					if( Start != string :: npos )
 						Object = Object.substr( Start );
 				}
-				*/
+				
 				int RandomNumber = 5;
 				srand((unsigned)time(0));
 				RandomNumber = (rand()%8);
@@ -5536,12 +5550,12 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 				SendAllChat( tr("lang_0087") ); // ShufflingPlayers
 				ShuffleSlots( );
 			}
-
+*/
 			//
 			// !safeimmune
 			//
 
-			else if( Command == "safeimmune" || Command =="si" || Command == "sk" )
+			else if( ( Command == "safeimmune" || Command =="si" || Command == "sk" ) )
 			{
 				string mess;
 				if (!m_GHost->m_SafeLobbyImmunity)
@@ -5560,7 +5574,7 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 			// !STARTN
 			//
 
-			else if( Command == "startn" && !m_CountDownStarted )
+			else if( ( Command == "startn" && !m_CountDownStarted ) )
 			{
 				if (m_GHost->m_onlyownerscanstart)
 				if ((!IsOwner( User) && GetPlayerFromName(m_OwnerName, false)) && !RootAdminCheck )
@@ -5581,7 +5595,7 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 				m_CountDownCounter = 0;
 				if (m_NormalCountdown)
 				{
-					m_CountDownCounter = 5;
+					m_CountDownCounter = 10;
 					SendAll( m_Protocol->SEND_W3GS_COUNTDOWN_START( ));
 				}
 			}
@@ -5702,7 +5716,7 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 			// !SYNCLIMIT
 			//
 
-			else if( Command == "synclimit" || Command == "s" )
+			else if( ( Command == "synclimit" || Command == "s" ) )
 			{
 				if( Payload.empty( ) )
 					SendAllChat( tr("lang_0098", UTIL_ToString( m_SyncLimit ) ) ); // SyncLimitIs
@@ -5809,7 +5823,7 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 			// !VB
 			//
 
-			else if( Command == "verbose" || Command == "vb" )
+			else if( ( Command == "verbose" || Command == "vb" ) )
 			{
 				m_GHost->m_Verbose = !m_GHost->m_Verbose;
 				if (m_GHost->m_Verbose)
@@ -5845,7 +5859,7 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 			// !NG
 			//
 
-			else if( Command == "nogarena" || Command == "ng" )
+			else if( ( Command == "nogarena" || Command == "ng" ) )
 			{
 				m_NoGarena = !m_NoGarena;
 				if(m_NoGarena)
@@ -5878,7 +5892,7 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 			// !RMK
 			//
 
-			else if( Command == "rmk" && !player->GetRmkVote( ) && m_GameLoaded)
+			else if( Command == "rmk" && !player->GetRmkVote( ) && m_GameLoaded )
 			{
 				if (m_RmkVotePlayer.empty())
 				{
@@ -5901,9 +5915,10 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 
 				if( Votes >= VotesNeeded )
 				{
-					SendAllChat(tr("lang_1053")); // "Game will end in 5 seconds"
+					m_Stats->SetWinner(0);				
+					SendAllChat(tr("lang_1053")); // "Game will end in 10 seconds"
 					m_GameEndCountDownStarted = true;
-					m_GameEndCountDownCounter = 5;
+					m_GameEndCountDownCounter = 10;
 					m_GameEndLastCountDownTicks = GetTicks();
 					m_RmkVotePlayer.clear( );
 					m_StartedRmkVoteTime = 0;
@@ -6021,21 +6036,20 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 				if (m_Slots[GetSIDFromPID(player->GetPID())].GetTeam()!=m_EndRequestedTeam)
 				{
 					do_end_command = true;
-					m_Stats->SetWinner(m_RequestedWinner);
+					m_Stats->SetWinner(0);
 				}
 			}
 			if (do_end_command)
 			{
 				CONSOLE_Print( "[GAME: " + m_GameName + "] is over (admin ended game)" );
-				SendAllChat(tr("lang_1168")); // Game will end in 5 seconds"
+				SendAllChat(tr("lang_1168")); // Game will end in 10 seconds"
 				m_GameEndCountDownStarted = true;
-				m_GameEndCountDownCounter = 5;
+				m_GameEndCountDownCounter = 10;
 				m_GameEndLastCountDownTicks = GetTicks();
 			}
 		}
 		return HideCommand;
 	}
-
 	//
 	//	!SWAP
 	//
@@ -6074,7 +6088,7 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 			}
 		
 		}
-
+/*
 		//
 		//	!POINTS
 		//
@@ -6105,7 +6119,7 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 			if (!msg.empty())
 				SendAllChat( msg );
 		}
-
+*/
 	//
 	// !VOTEMODE or VOTEMOD
 	//
@@ -6159,7 +6173,7 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 	// !VOTEABC !BALANCE
 	//
 
-	else if ( (Command == "voteabc" || Command == "balance") && Payload.empty() && !m_GameLoading && !m_GameLoaded)
+	else if ( (Command == "voteabc" || Command == "balance") && !Payload.empty() && !m_GameLoading && !m_GameLoaded )
 	{
 		player->SetABCVote(true);
 
@@ -6178,7 +6192,7 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 		} else
 			SendAllChat( tr("1509", "$USER$", player->GetName(), "$VOTES$", UTIL_ToString( (int)(m_Players.size() / 2) -  ABCvote_count) ));
 	}
-
+/*
 	//
 	// !VOTESTART
 	//
@@ -6195,7 +6209,7 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 			if ((*i)->GetStartVote())
 				++start_voted;
 
-		if ( m_Players.size() > 2 && start_voted == m_Players.size() && !m_CountDownStarted )
+		if (start_voted == m_Players.size() && !m_CountDownStarted)
 			StartCountDown( false );
 	}
 
@@ -6219,7 +6233,7 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 		if (!not_voted_players.empty())
 			SendAllChat( tr("lang_1220", not_voted_players));
 	}
-
+*/	
 	//
 	// !STATS
 	//
@@ -6277,20 +6291,110 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 	//
 	// !VERSION
 	//
-
+/*
 	else if( Command == "version" || Command == "v" )
 	{
 	    SendChat( player, tr("lang_0036", m_GHost->m_Version ) ); // VersionAdmin
 
-	    /*
+	    
 		if( player->GetSpoofed( ) && ( AdminCheck || RootAdminCheck || IsOwner( User ) ) )
 			SendChat( player, tr("lang_0036", m_GHost->m_Version ) ); // VersionAdmin
 		else
 //			SendChat( player, m_GHost->m_Language->VersionNotAdmin( m_GHost->m_Version ) );
 			SendChat( player, tr("lang_0036", m_GHost->m_Version ) ); // VersionAdmin
-        */
+        
+	}
+*/
+	
+	//
+	// !VOTESTART
+	//
+	
+	else if( Command == "votestart" )
+	{
+		bool votestartAuth = player->GetSpoofed( ) && ( AdminCheck || RootAdminCheck || IsOwner( User ) );
+		bool votestartAutohost = m_GameState == GAME_PUBLIC && !m_GHost->m_AutoHostGameName.empty( ) && m_GHost->m_AutoHostMaximumGames != 0 && m_GHost->m_AutoHostAutoStartPlayers != 0 && m_AutoStartPlayers != 0;
+
+		if( m_GHost->m_VoteStartAllowed && !m_CountDownStarted && (votestartAuth || votestartAutohost || !m_GHost->m_VoteStartAutohostOnly) )
+		{
+			if( m_GHost->m_CurrentGame->GetLocked( ) )
+			{
+				SendChat( player, "Error: cannot votestart because the game is locked. Owner is " + m_OwnerName );
+				return HideCommand;
+			}
+
+
+			if(m_StartedVoteStartTime == 0)
+			{ //need >minplayers or admin to START a votestart
+				if (GetNumHumanPlayers() < m_GHost->m_VoteStartMinPlayers && !votestartAuth)
+				{ //need at least eight players to votestart
+					SendChat( player, "You cannot use !votestart until there " + UTIL_ToString(m_GHost->m_VoteStartMinPlayers) + " or more players!" );
+					return HideCommand;
+				}
+
+				for( vector<CGamePlayer *> :: iterator i = m_Players.begin( ); i != m_Players.end( ); ++i )
+					(*i)->SetStartVote( false );
+
+				m_StartedVoteStartTime = GetTime();
+			
+				CONSOLE_Print( "[GAME: " + m_GameName + "] votestart started by player [" + User + "]" );
+			}
+
+			player->SetStartVote(true);
+				
+			uint32_t VotesNeeded;
+			uint32_t Votes = 0;
+
+
+			for( vector<CGamePlayer *> :: iterator i = m_Players.begin( ); i != m_Players.end( ); ++i )
+			{
+				if( (*i)->GetStartVote( ) )
+					++Votes;
+			}
+
+
+			if( m_GHost->m_VoteStartPercentalVoting)
+			{
+				VotesNeeded = ((uint32_t) (GetNumHumanPlayers() *  (m_GHost->m_VoteStartPercent - 1) / 100)) + 1;
+			}
+			else
+			{
+				VotesNeeded = m_GHost->m_VoteStartMinPlayers;
+			}
+		
+			if( Votes < VotesNeeded )
+			{
+				SendAllChat( UTIL_ToString(VotesNeeded - Votes) + " more votes needed to votestart.");
+			}
+			else
+			{
+				StartCountDown( true );
+			}
+
+		}
 	}
 
+	//
+	// !NOTVOTED for start !NV
+	//
+
+	else if ( Command == "notvoted" || Command == "nv" && Payload.empty( ) )
+	{
+		string not_voted_players;
+
+		for (vector<CGamePlayer*>::iterator i = m_Players.begin(); i != m_Players.end(); ++i)
+			if (!(*i)->GetStartVote())
+			{
+				not_voted_players += (*i)->GetName();
+
+				if (i != m_Players.end() - 1)
+					not_voted_players += ",";
+			}
+
+		if (!not_voted_players.empty())
+			SendAllChat( tr("lang_1220", not_voted_players));
+	}
+	
 	//
 	// !VOTEKICK
 	//
@@ -6430,7 +6534,7 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 	// !RMK
 	//
 
-	else if( Command == "rmk" && !player->GetRmkVote( ) && m_GameLoaded)
+	else if( Command == "rmk" && !player->GetRmkVote( ) && m_GameLoaded )
 	{
 		if (m_RmkVotePlayer.empty())
 		{
@@ -6454,9 +6558,10 @@ bool CGame :: EventPlayerBotCommand( CGamePlayer *player, string command, string
 
 		if( Votes >= VotesNeeded )
 		{
-			SendAllChat(tr("lang_1053")); // Game will end in 5 seconds
+			m_Stats->SetWinner(0);
+			SendAllChat(tr("lang_1053")); // Game will end in 10 seconds
 			m_GameEndCountDownStarted = true;
-			m_GameEndCountDownCounter = 5;
+			m_GameEndCountDownCounter = 10;
 			m_GameEndLastCountDownTicks = GetTicks();
 			m_RmkVotePlayer.clear( );
 			m_StartedRmkVoteTime = 0;
@@ -6624,7 +6729,8 @@ int CGame :: EventDotaGameFastFinishProcess( uint32_t &votes, uint32_t &votesmax
 	{
 		votes = votes1;
 		votesmax = count1;
-	} else if ( playerTeam == 1 )
+	}
+	else if ( playerTeam == 1 )
 	{
 		votes = votes2;
 		votesmax = count2;
@@ -6634,14 +6740,16 @@ int CGame :: EventDotaGameFastFinishProcess( uint32_t &votes, uint32_t &votesmax
 	{
 		if( end1 )
 			m_Stats->SetWinner(2);
-		else
+		else if ( end2 )
 			m_Stats->SetWinner(1);
+		else
+			m_Stats->SetWinner(0);	
 			
-		SendAllChat(tr("lang_1213", end1 ? "SENTINEL" : "SCOURGE" ));
+//		SendAllChat(tr("lang_1213", end1 ? "SENTINEL" : "SCOURGE" ));
 
-		SendAllChat(tr("lang_1053")); // "Game will end in 5 seconds"
+		SendAllChat(tr("lang_1053")); // "Game will end in 10 seconds"
 		m_GameEndCountDownStarted = true;
-		m_GameEndCountDownCounter = 5;
+		m_GameEndCountDownCounter = 10;
 		m_GameEndLastCountDownTicks = GetTicks();
 
 		return end1 ? 2 : 1;
