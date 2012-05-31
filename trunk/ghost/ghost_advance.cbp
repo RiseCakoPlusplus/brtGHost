@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="ghost_advance" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="../ghost++" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="../" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="../ghost++" prefix_auto="1" extension_auto="1" />
+				<Option working_dir=".." />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="../bncsutil/src" />
+					<Add directory="../StormLib" />
+					<Add directory="../StormLib/stormlib/zlib" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-L." />
+					<Add option="-L../bncsutil/src/bncsutil/" />
+					<Add option="-L../StormLib/stormlib/" />
+					<Add option="-L/usr/local/lib/mysql" />
+					<Add option="-L/usr/local/include/" />
+					<Add option="-L/usr/local/lib" />
+					<Add option="-lbncsutil" />
+					<Add option="-lpthread" />
+					<Add option="-ldl" />
+					<Add option="-lz" />
+					<Add option="-lStorm" />
+					<Add option="-lmysqlclient_r" />
+					<Add option="-lboost_date_time-mt" />
+					<Add option="-lboost_thread-mt" />
+					<Add option="-lboost_system-mt" />
+					<Add option="-lboost_filesystem-mt" />
+				</Linker>
+			</Target>
+			<Target title="Release MySQL">
+				<Option output="../ghost++" prefix_auto="1" extension_auto="1" />
+				<Option working_dir=".." />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-DGHOST_MYSQL" />
+					<Add directory="../bncsutil/src" />
+					<Add directory="../StormLib" />
+					<Add directory="../StormLib/stormlib/zlib" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-L." />
+					<Add option="-L../bncsutil/src/bncsutil/" />
+					<Add option="-L../StormLib/stormlib/" />
+					<Add option="-L/usr/local/lib/mysql" />
+					<Add option="-L/usr/local/include/" />
+					<Add option="-L/usr/local/lib" />
+					<Add option="-lbncsutil" />
+					<Add option="-lpthread" />
+					<Add option="-ldl" />
+					<Add option="-lz" />
+					<Add option="-lStorm" />
+					<Add option="-lmysqlclient_r" />
+					<Add option="-lboost_date_time-mt" />
+					<Add option="-lboost_thread-mt" />
+					<Add option="-lboost_system-mt" />
+					<Add option="-lboost_filesystem-mt" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="bncsutilinterface.cpp" />
+		<Unit filename="bncsutilinterface.h" />
+		<Unit filename="bnet.cpp" />
+		<Unit filename="bnet.h" />
+		<Unit filename="bnetprotocol.cpp" />
+		<Unit filename="bnetprotocol.h" />
+		<Unit filename="bnlsclient.cpp" />
+		<Unit filename="bnlsclient.h" />
+		<Unit filename="bnlsprotocol.cpp" />
+		<Unit filename="bnlsprotocol.h" />
+		<Unit filename="commandpacket.cpp" />
+		<Unit filename="commandpacket.h" />
+		<Unit filename="config.cpp" />
+		<Unit filename="config.h" />
+		<Unit filename="crc32.cpp" />
+		<Unit filename="crc32.h" />
+		<Unit filename="csvparser.cpp" />
+		<Unit filename="csvparser.h" />
+		<Unit filename="dirent.h" />
+		<Unit filename="game.cpp" />
+		<Unit filename="game.h" />
+		<Unit filename="game_admin.cpp" />
+		<Unit filename="game_admin.h" />
+		<Unit filename="game_base.cpp" />
+		<Unit filename="game_base.h" />
+		<Unit filename="gameplayer.cpp" />
+		<Unit filename="gameplayer.h" />
+		<Unit filename="gameprotocol.cpp" />
+		<Unit filename="gameprotocol.h" />
+		<Unit filename="gameslot.cpp" />
+		<Unit filename="gameslot.h" />
+		<Unit filename="ghost.cpp" />
+		<Unit filename="ghost.h" />
+		<Unit filename="ghostdb.cpp" />
+		<Unit filename="ghostdb.h" />
+		<Unit filename="ghostdbmysql.cpp" />
+		<Unit filename="ghostdbmysql.h" />
+		<Unit filename="ghostdbsqlite.cpp" />
+		<Unit filename="ghostdbsqlite.h" />
+		<Unit filename="gpsprotocol.cpp" />
+		<Unit filename="gpsprotocol.h" />
+		<Unit filename="includes.h" />
+		<Unit filename="language.cpp" />
+		<Unit filename="language.h" />
+		<Unit filename="map.cpp" />
+		<Unit filename="map.h" />
+		<Unit filename="ms_stdint.h" />
+		<Unit filename="next_combination.h" />
+		<Unit filename="packed.cpp" />
+		<Unit filename="packed.h" />
+		<Unit filename="replay.cpp" />
+		<Unit filename="replay.h" />
+		<Unit filename="savegame.cpp" />
+		<Unit filename="savegame.h" />
+		<Unit filename="sha1.cpp" />
+		<Unit filename="sha1.h" />
+		<Unit filename="socket.cpp" />
+		<Unit filename="socket.h" />
+		<Unit filename="sqlite3.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="sqlite3.h" />
+		<Unit filename="sqlite3ext.h" />
+		<Unit filename="stats.cpp" />
+		<Unit filename="stats.h" />
+		<Unit filename="statsdota.cpp" />
+		<Unit filename="statsdota.h" />
+		<Unit filename="statsw3mmd.cpp" />
+		<Unit filename="statsw3mmd.h" />
+		<Unit filename="util.cpp" />
+		<Unit filename="util.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

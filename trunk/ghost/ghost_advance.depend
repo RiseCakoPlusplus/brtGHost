@@ -1,0 +1,2235 @@
+# depslib dependency file v1.0
+1273123133 source:/home/ndev/ghost_a/ghost_advance/bncsutilinterface.cpp
+	"ghost.h"
+	"util.h"
+	"bncsutilinterface.h"
+	<bncsutil/bncsutil.h>
+
+1268731056 /home/ndev/ghost_a/ghost_advance/ghost.h
+	"includes.h"
+	"config.h"
+	"ghostdb.h"
+
+1258527190 /home/ndev/ghost_a/ghost_advance/includes.h
+	"ms_stdint.h"
+	<stdint.h>
+	<fstream>
+	<iostream>
+	<sstream>
+	<iomanip>
+	<algorithm>
+	<map>
+	<queue>
+	<set>
+	<string>
+	<vector>
+	<windows.h>
+	<wininet.h>
+	<winsock.h>
+
+1225147228 /home/ndev/ghost_a/ghost_advance/ms_stdint.h
+	<limits.h>
+	<wchar.h>
+
+1258364062 /home/ndev/ghost_a/ghost_advance/config.h
+
+1268400070 /home/ndev/ghost_a/ghost_advance/ghostdb.h
+	"boost/date_time/gregorian/gregorian.hpp"
+	"boost/date_time/time_system_counted.hpp"
+	"util.h"
+
+1267303444 /home/ndev/ghost_a/ghost_advance/util.h
+
+1258188032 /home/ndev/ghost_a/ghost_advance/bncsutilinterface.h
+
+1225147228 /home/ndev/ghost_a/bncsutil/src/bncsutil/bncsutil.h
+	<bncsutil/mutil.h>
+	<bncsutil/checkrevision.h>
+	<bncsutil/bsha1.h>
+	<bncsutil/oldauth.h>
+	<bncsutil/decodekey.h>
+	<bncsutil/cdkeydecoder.h>
+	<bncsutil/nls.h>
+	<bncsutil/libinfo.h>
+
+1225147228 /home/ndev/ghost_a/bncsutil/src/bncsutil/mutil.h
+	<config.h>
+	"mutil_types.h"
+	<stdlib.h>
+
+1225147228 /home/ndev/ghost_a/bncsutil/src/bncsutil/mutil_types.h
+	"ms_stdint.h"
+	<stdint.h>
+
+1225147228 /home/ndev/ghost_a/bncsutil/src/bncsutil/ms_stdint.h
+	<limits.h>
+	<wchar.h>
+
+1225147228 /home/ndev/ghost_a/bncsutil/src/bncsutil/checkrevision.h
+	<string>
+
+1225147228 /home/ndev/ghost_a/bncsutil/src/bncsutil/bsha1.h
+
+1225147228 /home/ndev/ghost_a/bncsutil/src/bncsutil/oldauth.h
+
+1225147228 /home/ndev/ghost_a/bncsutil/src/bncsutil/decodekey.h
+
+1225147228 /home/ndev/ghost_a/bncsutil/src/bncsutil/cdkeydecoder.h
+	<bncsutil/mutil.h>
+
+1225147228 /home/ndev/ghost_a/bncsutil/src/bncsutil/nls.h
+	<bncsutil/mutil.h>
+	<string>
+	<vector>
+	<utility>
+
+1225147228 /home/ndev/ghost_a/bncsutil/src/bncsutil/libinfo.h
+
+1268738616 source:/home/ndev/ghost_a/ghost_advance/bnet.cpp
+	"ghost.h"
+	"util.h"
+	"config.h"
+	"language.h"
+	"socket.h"
+	"commandpacket.h"
+	"ghostdb.h"
+	"bncsutilinterface.h"
+	"bnlsclient.h"
+	"bnetprotocol.h"
+	"bnet.h"
+	"map.h"
+	"packed.h"
+	"savegame.h"
+	"replay.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"game_base.h"
+	<boost/filesystem.hpp>
+
+1268400024 /home/ndev/ghost_a/ghost_advance/language.h
+
+1267303616 /home/ndev/ghost_a/ghost_advance/socket.h
+	<winsock2.h>
+	<errno.h>
+	<arpa/inet.h>
+	<errno.h>
+	<fcntl.h>
+	<netdb.h>
+	<netinet/in.h>
+	<netinet/tcp.h>
+	<sys/ioctl.h>
+	<sys/socket.h>
+	<sys/types.h>
+	<unistd.h>
+
+1225147228 /home/ndev/ghost_a/ghost_advance/commandpacket.h
+
+1245331348 /home/ndev/ghost_a/ghost_advance/bnlsclient.h
+
+1258188012 /home/ndev/ghost_a/ghost_advance/bnetprotocol.h
+
+1267303180 /home/ndev/ghost_a/ghost_advance/bnet.h
+
+1258030954 /home/ndev/ghost_a/ghost_advance/map.h
+	"gameslot.h"
+
+1252912976 /home/ndev/ghost_a/ghost_advance/gameslot.h
+
+1258188086 /home/ndev/ghost_a/ghost_advance/packed.h
+
+1252912966 /home/ndev/ghost_a/ghost_advance/savegame.h
+	"gameslot.h"
+
+1252912916 /home/ndev/ghost_a/ghost_advance/replay.h
+	"gameslot.h"
+
+1268508852 /home/ndev/ghost_a/ghost_advance/gameplayer.h
+
+1267303590 /home/ndev/ghost_a/ghost_advance/gameprotocol.h
+	"gameslot.h"
+
+1268508858 /home/ndev/ghost_a/ghost_advance/game_base.h
+	"gameslot.h"
+
+1258187934 source:/home/ndev/ghost_a/ghost_advance/bnetprotocol.cpp
+	"ghost.h"
+	"util.h"
+	"bnetprotocol.h"
+
+1258567324 source:/home/ndev/ghost_a/ghost_advance/bnlsclient.cpp
+	"ghost.h"
+	"util.h"
+	"socket.h"
+	"commandpacket.h"
+	"bnlsprotocol.h"
+	"bnlsclient.h"
+
+1240109588 /home/ndev/ghost_a/ghost_advance/bnlsprotocol.h
+
+1240109588 source:/home/ndev/ghost_a/ghost_advance/bnlsprotocol.cpp
+	"ghost.h"
+	"util.h"
+	"bnlsprotocol.h"
+
+1225147228 source:/home/ndev/ghost_a/ghost_advance/commandpacket.cpp
+	"ghost.h"
+	"commandpacket.h"
+
+1258364062 source:/home/ndev/ghost_a/ghost_advance/config.cpp
+	"ghost.h"
+	"config.h"
+	<stdlib.h>
+
+1225147228 source:/home/ndev/ghost_a/ghost_advance/crc32.cpp
+	"ghost.h"
+	"crc32.h"
+
+1225147228 /home/ndev/ghost_a/ghost_advance/crc32.h
+
+1250407534 source:/home/ndev/ghost_a/ghost_advance/csvparser.cpp
+	<iostream>
+	<cstdlib>
+	"csvparser.h"
+
+1225147228 /home/ndev/ghost_a/ghost_advance/csvparser.h
+	<string>
+
+1268731046 source:/home/ndev/ghost_a/ghost_advance/game.cpp
+	"ghost.h"
+	"util.h"
+	"config.h"
+	"language.h"
+	"socket.h"
+	"ghostdb.h"
+	"bnet.h"
+	"map.h"
+	"packed.h"
+	"savegame.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"game_base.h"
+	"game.h"
+	"stats.h"
+	"statsdota.h"
+	"statsw3mmd.h"
+	<cmath>
+	<string.h>
+	<time.h>
+
+1267303374 /home/ndev/ghost_a/ghost_advance/game.h
+
+1243447852 /home/ndev/ghost_a/ghost_advance/stats.h
+
+1243448044 /home/ndev/ghost_a/ghost_advance/statsdota.h
+
+1252499480 /home/ndev/ghost_a/ghost_advance/statsw3mmd.h
+
+1268400018 source:/home/ndev/ghost_a/ghost_advance/game_admin.cpp
+	"ghost.h"
+	"util.h"
+	"config.h"
+	"language.h"
+	"socket.h"
+	"ghostdb.h"
+	"bnet.h"
+	"map.h"
+	"packed.h"
+	"savegame.h"
+	"replay.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"game_base.h"
+	"game_admin.h"
+	<string.h>
+	<boost/filesystem.hpp>
+
+1250357798 /home/ndev/ghost_a/ghost_advance/game_admin.h
+
+1268508892 source:/home/ndev/ghost_a/ghost_advance/game_base.cpp
+	"ghost.h"
+	"util.h"
+	"config.h"
+	"language.h"
+	"socket.h"
+	"ghostdb.h"
+	"bnet.h"
+	"map.h"
+	"packed.h"
+	"savegame.h"
+	"replay.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"game_base.h"
+	<cmath>
+	<string.h>
+	<time.h>
+	"next_combination.h"
+
+1250433144 /home/ndev/ghost_a/ghost_advance/next_combination.h
+	<algorithm>
+
+1268508904 source:/home/ndev/ghost_a/ghost_advance/gameplayer.cpp
+	"ghost.h"
+	"util.h"
+	"language.h"
+	"socket.h"
+	"commandpacket.h"
+	"bnet.h"
+	"map.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"gpsprotocol.h"
+	"game_base.h"
+	"ghostdb.h"
+
+1267097926 /home/ndev/ghost_a/ghost_advance/gpsprotocol.h
+
+1267303594 source:/home/ndev/ghost_a/ghost_advance/gameprotocol.cpp
+	"ghost.h"
+	"util.h"
+	"crc32.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"game_base.h"
+
+1252912972 source:/home/ndev/ghost_a/ghost_advance/gameslot.cpp
+	"ghost.h"
+	"gameslot.h"
+
+1268740356 source:/home/ndev/ghost_a/ghost_advance/ghost.cpp
+	"ghost.h"
+	"util.h"
+	"crc32.h"
+	"sha1.h"
+	"csvparser.h"
+	"config.h"
+	"language.h"
+	"socket.h"
+	"ghostdb.h"
+	"ghostdbsqlite.h"
+	"ghostdbmysql.h"
+	"bnet.h"
+	"map.h"
+	"packed.h"
+	"savegame.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"gpsprotocol.h"
+	"game_base.h"
+	"game.h"
+	"game_admin.h"
+	"bnetprotocol.h"
+	<cstring>
+	<signal.h>
+	<stdlib.h>
+	<ws2tcpip.h>
+	<boost/algorithm/string/replace.hpp>
+	<boost/filesystem/operations.hpp>
+	<stormlib/StormLib.h>
+	"ghost.h"
+	"util.h"
+	"crc32.h"
+	"sha1.h"
+	"csvparser.h"
+	"config.h"
+	"language.h"
+	"socket.h"
+	"commandpacket.h"
+	"ghostdb.h"
+	"ghostdbsqlite.h"
+	"ghostdbmysql.h"
+	"bncsutilinterface.h"
+	"warden.h"
+	"bnlsprotocol.h"
+	"bnlsclient.h"
+	"bnetprotocol.h"
+	"bnet.h"
+	"map.h"
+	"packed.h"
+	"savegame.h"
+	"replay.h"
+	"gameslot.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"gpsprotocol.h"
+	"game_base.h"
+	"game.h"
+	"game_admin.h"
+	"stats.h"
+	"statsdota.h"
+	"sqlite3.h"
+	<process.h>
+	<unistd.h>
+	<windows.h>
+	<wininet.h>
+	<winsock.h>
+	<time.h>
+	<sys/time.h>
+	<mach/mach_time.h>
+
+1237571176 /home/ndev/ghost_a/ghost_advance/sha1.h
+	<stdio.h>
+	<memory.h>
+	<string.h>
+	"ms_stdint.h"
+	<stdint.h>
+
+1267303006 /home/ndev/ghost_a/ghost_advance/ghostdbsqlite.h
+
+1267303018 /home/ndev/ghost_a/ghost_advance/ghostdbmysql.h
+
+1257773674 /home/ndev/ghost_a/StormLib/stormlib/StormLib.h
+	"StormPort.h"
+	<pshpack1.h>
+	<poppack.h>
+	"StormDll.h"
+
+1245278196 /home/ndev/ghost_a/StormLib/stormlib/StormPort.h
+	<assert.h>
+	<stdio.h>
+	<windows.h>
+	<Carbon/Carbon.h>
+	<sys/stat.h>
+	<sys/dtrace.h>
+	<sys/types.h>
+	<unistd.h>
+	<fcntl.h>
+	<unistd.h>
+	<stdint.h>
+	<stdlib.h>
+	<stdio.h>
+	<stdarg.h>
+	<string.h>
+	<ctype.h>
+	<assert.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<unistd.h>
+	<stdint.h>
+	<stdlib.h>
+	<stdio.h>
+	<stdarg.h>
+	<string.h>
+	<ctype.h>
+	<assert.h>
+
+1225147228 /home/ndev/ghost_a/StormLib/stormlib/StormDll.h
+	<windows.h>
+
+1249389422 /home/ndev/ghost_a/ghost_advance/sqlite3.h
+	<stdarg.h>
+
+1267302982 source:/home/ndev/ghost_a/ghost_advance/ghostdb.cpp
+	"ghost.h"
+	"util.h"
+	"config.h"
+	"ghostdb.h"
+
+1267974884 source:/home/ndev/ghost_a/ghost_advance/ghostdbmysql.cpp
+	"ghost.h"
+	"util.h"
+	"config.h"
+	"ghostdb.h"
+	"ghostdbmysql.h"
+	<signal.h>
+	<winsock.h>
+	<mysql/mysql.h>
+	<boost/thread.hpp>
+
+1267303142 source:/home/ndev/ghost_a/ghost_advance/ghostdbsqlite.cpp
+	"ghost.h"
+	"util.h"
+	"config.h"
+	"ghostdb.h"
+	"ghostdbsqlite.h"
+	"sqlite3.h"
+	<boost/filesystem.hpp>
+
+1267097926 source:/home/ndev/ghost_a/ghost_advance/gpsprotocol.cpp
+	"ghost.h"
+	"util.h"
+	"gpsprotocol.h"
+
+1268400054 source:/home/ndev/ghost_a/ghost_advance/language.cpp
+	"ghost.h"
+	"util.h"
+	"config.h"
+	"language.h"
+
+1258567304 source:/home/ndev/ghost_a/ghost_advance/map.cpp
+	"ghost.h"
+	"util.h"
+	"crc32.h"
+	"sha1.h"
+	"config.h"
+	"map.h"
+	<stormlib/StormLib.h>
+
+1258567236 source:/home/ndev/ghost_a/ghost_advance/packed.cpp
+	"ghost.h"
+	"util.h"
+	"crc32.h"
+	"packed.h"
+	<zlib.h>
+
+1225147228 /home/ndev/ghost_a/StormLib/stormlib/zlib/zlib.h
+	"zconf.h"
+
+1225147228 /home/ndev/ghost_a/StormLib/stormlib/zlib/zconf.h
+	<windows.h>
+	<sys/types.h>
+	<unistd.h>
+	<unixio.h>
+
+1267303586 source:/home/ndev/ghost_a/ghost_advance/replay.cpp
+	"ghost.h"
+	"util.h"
+	"packed.h"
+	"replay.h"
+	"gameprotocol.h"
+
+1252912956 source:/home/ndev/ghost_a/ghost_advance/savegame.cpp
+	"ghost.h"
+	"util.h"
+	"packed.h"
+	"savegame.h"
+
+1252912936 source:/home/ndev/ghost_a/ghost_advance/sha1.cpp
+	"sha1.h"
+
+1267303618 source:/home/ndev/ghost_a/ghost_advance/socket.cpp
+	"ghost.h"
+	"util.h"
+	"socket.h"
+	<string.h>
+
+1249389422 source:/home/ndev/ghost_a/ghost_advance/sqlite3.c
+	"config.h"
+	<stdint.h>
+	<inttypes.h>
+	<tcl.h>
+	<stdarg.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	<stddef.h>
+	<windows.h>
+	<os2safe.h>
+	<os2.h>
+	<uconv.h>
+	<ctype.h>
+	<time.h>
+	<pthread.h>
+	<math.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<unistd.h>
+	<sys/time.h>
+	<errno.h>
+	<sys/ioctl.h>
+	<semaphore.h>
+	<limits.h>
+	<sys/file.h>
+	<sys/param.h>
+	<sys/mount.h>
+	<dlfcn.h>
+	<winbase.h>
+	<sys/cygwin.h>
+	<unicode/utypes.h>
+	<unicode/uregex.h>
+	<unicode/ustring.h>
+	<unicode/ucol.h>
+	<unicode/ubrk.h>
+	<unicode/utf16.h>
+
+1243447836 source:/home/ndev/ghost_a/ghost_advance/stats.cpp
+	"ghost.h"
+	"stats.h"
+
+1250487222 source:/home/ndev/ghost_a/ghost_advance/statsdota.cpp
+	"ghost.h"
+	"util.h"
+	"ghostdb.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"game_base.h"
+	"stats.h"
+	"statsdota.h"
+
+1252499220 source:/home/ndev/ghost_a/ghost_advance/statsw3mmd.cpp
+	"ghost.h"
+	"util.h"
+	"ghostdb.h"
+	"gameprotocol.h"
+	"game_base.h"
+	"stats.h"
+	"statsw3mmd.h"
+
+1267355470 source:/home/ndev/ghost_a/ghost_advance/util.cpp
+	"stdlib.h"
+	"ghost.h"
+	"util.h"
+	"string.h"
+	<sys/stat.h>
+
+1273126732 source:/home/dev/ghostone/ghost/bncsutilinterface.cpp
+	"ghost.h"
+	"util.h"
+	"bncsutilinterface.h"
+	<bncsutil/bncsutil.h>
+
+1268734656 /home/dev/ghostone/ghost/ghost.h
+	"includes.h"
+	"config.h"
+	"ghostdb.h"
+
+1258530790 /home/dev/ghostone/ghost/includes.h
+	"ms_stdint.h"
+	<stdint.h>
+	<fstream>
+	<iostream>
+	<sstream>
+	<iomanip>
+	<algorithm>
+	<map>
+	<queue>
+	<set>
+	<string>
+	<vector>
+	<windows.h>
+	<wininet.h>
+	<winsock.h>
+
+1225150828 /home/dev/ghostone/ghost/ms_stdint.h
+	<limits.h>
+	<wchar.h>
+
+1258367662 /home/dev/ghostone/ghost/config.h
+
+1268403670 /home/dev/ghostone/ghost/ghostdb.h
+	"boost/date_time/gregorian/gregorian.hpp"
+	"boost/date_time/time_system_counted.hpp"
+	"util.h"
+
+1267307044 /home/dev/ghostone/ghost/util.h
+
+1258191632 /home/dev/ghostone/ghost/bncsutilinterface.h
+
+1225154428 /home/dev/ghostone/bncsutil/src/bncsutil/bncsutil.h
+	<bncsutil/mutil.h>
+	<bncsutil/checkrevision.h>
+	<bncsutil/bsha1.h>
+	<bncsutil/oldauth.h>
+	<bncsutil/decodekey.h>
+	<bncsutil/cdkeydecoder.h>
+	<bncsutil/nls.h>
+	<bncsutil/libinfo.h>
+
+1225154428 /home/dev/ghostone/bncsutil/src/bncsutil/mutil.h
+	<config.h>
+	"mutil_types.h"
+	<stdlib.h>
+
+1225154428 /home/dev/ghostone/bncsutil/src/bncsutil/mutil_types.h
+	"ms_stdint.h"
+	<stdint.h>
+
+1225154428 /home/dev/ghostone/bncsutil/src/bncsutil/ms_stdint.h
+	<limits.h>
+	<wchar.h>
+
+1225154428 /home/dev/ghostone/bncsutil/src/bncsutil/checkrevision.h
+	<string>
+
+1225154428 /home/dev/ghostone/bncsutil/src/bncsutil/bsha1.h
+
+1225154428 /home/dev/ghostone/bncsutil/src/bncsutil/oldauth.h
+
+1225154428 /home/dev/ghostone/bncsutil/src/bncsutil/decodekey.h
+
+1225154428 /home/dev/ghostone/bncsutil/src/bncsutil/cdkeydecoder.h
+	<bncsutil/mutil.h>
+
+1225154428 /home/dev/ghostone/bncsutil/src/bncsutil/nls.h
+	<bncsutil/mutil.h>
+	<string>
+	<vector>
+	<utility>
+
+1225154428 /home/dev/ghostone/bncsutil/src/bncsutil/libinfo.h
+
+1268742216 source:/home/dev/ghostone/ghost/bnet.cpp
+	"ghost.h"
+	"util.h"
+	"config.h"
+	"language.h"
+	"socket.h"
+	"commandpacket.h"
+	"ghostdb.h"
+	"bncsutilinterface.h"
+	"bnlsclient.h"
+	"bnetprotocol.h"
+	"bnet.h"
+	"map.h"
+	"packed.h"
+	"savegame.h"
+	"replay.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"game_base.h"
+	<boost/filesystem.hpp>
+
+1268403624 /home/dev/ghostone/ghost/language.h
+
+1267307216 /home/dev/ghostone/ghost/socket.h
+	<winsock2.h>
+	<errno.h>
+	<arpa/inet.h>
+	<errno.h>
+	<fcntl.h>
+	<netdb.h>
+	<netinet/in.h>
+	<netinet/tcp.h>
+	<sys/ioctl.h>
+	<sys/socket.h>
+	<sys/types.h>
+	<unistd.h>
+
+1225150828 /home/dev/ghostone/ghost/commandpacket.h
+
+1245334948 /home/dev/ghostone/ghost/bnlsclient.h
+
+1258191612 /home/dev/ghostone/ghost/bnetprotocol.h
+
+1267306780 /home/dev/ghostone/ghost/bnet.h
+
+1258034554 /home/dev/ghostone/ghost/map.h
+	"gameslot.h"
+
+1252916576 /home/dev/ghostone/ghost/gameslot.h
+
+1258191686 /home/dev/ghostone/ghost/packed.h
+
+1252916566 /home/dev/ghostone/ghost/savegame.h
+	"gameslot.h"
+
+1252916516 /home/dev/ghostone/ghost/replay.h
+	"gameslot.h"
+
+1268512452 /home/dev/ghostone/ghost/gameplayer.h
+
+1267307190 /home/dev/ghostone/ghost/gameprotocol.h
+	"gameslot.h"
+
+1275474093 /home/dev/ghostone/ghost/game_base.h
+	"gameslot.h"
+
+1258191534 source:/home/dev/ghostone/ghost/bnetprotocol.cpp
+	"ghost.h"
+	"util.h"
+	"bnetprotocol.h"
+
+1258570924 source:/home/dev/ghostone/ghost/bnlsclient.cpp
+	"ghost.h"
+	"util.h"
+	"socket.h"
+	"commandpacket.h"
+	"bnlsprotocol.h"
+	"bnlsclient.h"
+
+1240113188 /home/dev/ghostone/ghost/bnlsprotocol.h
+
+1240113188 source:/home/dev/ghostone/ghost/bnlsprotocol.cpp
+	"ghost.h"
+	"util.h"
+	"bnlsprotocol.h"
+
+1225150828 source:/home/dev/ghostone/ghost/commandpacket.cpp
+	"ghost.h"
+	"commandpacket.h"
+
+1258367662 source:/home/dev/ghostone/ghost/config.cpp
+	"ghost.h"
+	"config.h"
+	<stdlib.h>
+
+1225150828 source:/home/dev/ghostone/ghost/crc32.cpp
+	"ghost.h"
+	"crc32.h"
+
+1225150828 /home/dev/ghostone/ghost/crc32.h
+
+1250411134 source:/home/dev/ghostone/ghost/csvparser.cpp
+	<iostream>
+	<cstdlib>
+	"csvparser.h"
+
+1225150828 /home/dev/ghostone/ghost/csvparser.h
+	<string>
+
+1275928611 source:/home/dev/ghostone/ghost/game.cpp
+	"ghost.h"
+	"util.h"
+	"config.h"
+	"language.h"
+	"socket.h"
+	"ghostdb.h"
+	"bnet.h"
+	"map.h"
+	"packed.h"
+	"savegame.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"game_base.h"
+	"game.h"
+	"stats.h"
+	"statsdota.h"
+	"statsw3mmd.h"
+	<cmath>
+	<string.h>
+	<time.h>
+
+1267306974 /home/dev/ghostone/ghost/game.h
+
+1243451452 /home/dev/ghostone/ghost/stats.h
+
+1243451644 /home/dev/ghostone/ghost/statsdota.h
+
+1252503080 /home/dev/ghostone/ghost/statsw3mmd.h
+
+1268403618 source:/home/dev/ghostone/ghost/game_admin.cpp
+	"ghost.h"
+	"util.h"
+	"config.h"
+	"language.h"
+	"socket.h"
+	"ghostdb.h"
+	"bnet.h"
+	"map.h"
+	"packed.h"
+	"savegame.h"
+	"replay.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"game_base.h"
+	"game_admin.h"
+	<string.h>
+	<boost/filesystem.hpp>
+
+1250361398 /home/dev/ghostone/ghost/game_admin.h
+
+1275921439 source:/home/dev/ghostone/ghost/game_base.cpp
+	"ghost.h"
+	"util.h"
+	"config.h"
+	"language.h"
+	"socket.h"
+	"ghostdb.h"
+	"bnet.h"
+	"map.h"
+	"packed.h"
+	"savegame.h"
+	"replay.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"game_base.h"
+	<cmath>
+	<string.h>
+	<time.h>
+	"next_combination.h"
+
+1250436744 /home/dev/ghostone/ghost/next_combination.h
+	<algorithm>
+
+1268512504 source:/home/dev/ghostone/ghost/gameplayer.cpp
+	"ghost.h"
+	"util.h"
+	"language.h"
+	"socket.h"
+	"commandpacket.h"
+	"bnet.h"
+	"map.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"gpsprotocol.h"
+	"game_base.h"
+	"ghostdb.h"
+
+1267101526 /home/dev/ghostone/ghost/gpsprotocol.h
+
+1267307194 source:/home/dev/ghostone/ghost/gameprotocol.cpp
+	"ghost.h"
+	"util.h"
+	"crc32.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"game_base.h"
+
+1252916572 source:/home/dev/ghostone/ghost/gameslot.cpp
+	"ghost.h"
+	"gameslot.h"
+
+1275383802 source:/home/dev/ghostone/ghost/ghost.cpp
+	"ghost.h"
+	"util.h"
+	"crc32.h"
+	"sha1.h"
+	"csvparser.h"
+	"config.h"
+	"language.h"
+	"socket.h"
+	"ghostdb.h"
+	"ghostdbsqlite.h"
+	"ghostdbmysql.h"
+	"bnet.h"
+	"map.h"
+	"packed.h"
+	"savegame.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"gpsprotocol.h"
+	"game_base.h"
+	"game.h"
+	"game_admin.h"
+	"bnetprotocol.h"
+	<cstring>
+	<signal.h>
+	<stdlib.h>
+	<ws2tcpip.h>
+	<boost/algorithm/string/replace.hpp>
+	<boost/filesystem/operations.hpp>
+	<stormlib/StormLib.h>
+	"ghost.h"
+	"util.h"
+	"crc32.h"
+	"sha1.h"
+	"csvparser.h"
+	"config.h"
+	"language.h"
+	"socket.h"
+	"commandpacket.h"
+	"ghostdb.h"
+	"ghostdbsqlite.h"
+	"ghostdbmysql.h"
+	"bncsutilinterface.h"
+	"warden.h"
+	"bnlsprotocol.h"
+	"bnlsclient.h"
+	"bnetprotocol.h"
+	"bnet.h"
+	"map.h"
+	"packed.h"
+	"savegame.h"
+	"replay.h"
+	"gameslot.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"gpsprotocol.h"
+	"game_base.h"
+	"game.h"
+	"game_admin.h"
+	"stats.h"
+	"statsdota.h"
+	"sqlite3.h"
+	<process.h>
+	<unistd.h>
+	<windows.h>
+	<wininet.h>
+	<winsock.h>
+	<time.h>
+	<sys/time.h>
+	<mach/mach_time.h>
+
+1237574776 /home/dev/ghostone/ghost/sha1.h
+	<stdio.h>
+	<memory.h>
+	<string.h>
+	"ms_stdint.h"
+	<stdint.h>
+
+1267306606 /home/dev/ghostone/ghost/ghostdbsqlite.h
+
+1267306618 /home/dev/ghostone/ghost/ghostdbmysql.h
+
+1271224180 /home/dev/ghostone/StormLib/stormlib/StormLib.h
+	"StormPort.h"
+	<pshpack1.h>
+	<poppack.h>
+	"StormDll.h"
+
+1271224180 /home/dev/ghostone/StormLib/stormlib/StormPort.h
+	<assert.h>
+	<stdio.h>
+	<windows.h>
+	<Carbon/Carbon.h>
+	<sys/stat.h>
+	<sys/dtrace.h>
+	<sys/types.h>
+	<unistd.h>
+	<fcntl.h>
+	<unistd.h>
+	<stdint.h>
+	<stdlib.h>
+	<stdio.h>
+	<stdarg.h>
+	<string.h>
+	<ctype.h>
+	<assert.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<unistd.h>
+	<stdint.h>
+	<stdlib.h>
+	<stdio.h>
+	<stdarg.h>
+	<string.h>
+	<ctype.h>
+	<assert.h>
+
+1271224180 /home/dev/ghostone/StormLib/stormlib/StormDll.h
+	<windows.h>
+
+1249393022 /home/dev/ghostone/ghost/sqlite3.h
+	<stdarg.h>
+
+1267306582 source:/home/dev/ghostone/ghost/ghostdb.cpp
+	"ghost.h"
+	"util.h"
+	"config.h"
+	"ghostdb.h"
+
+1267978484 source:/home/dev/ghostone/ghost/ghostdbmysql.cpp
+	"ghost.h"
+	"util.h"
+	"config.h"
+	"ghostdb.h"
+	"ghostdbmysql.h"
+	<signal.h>
+	<winsock.h>
+	<mysql/mysql.h>
+	<boost/thread.hpp>
+
+1267306742 source:/home/dev/ghostone/ghost/ghostdbsqlite.cpp
+	"ghost.h"
+	"util.h"
+	"config.h"
+	"ghostdb.h"
+	"ghostdbsqlite.h"
+	"sqlite3.h"
+	<boost/filesystem.hpp>
+
+1267101526 source:/home/dev/ghostone/ghost/gpsprotocol.cpp
+	"ghost.h"
+	"util.h"
+	"gpsprotocol.h"
+
+1268403654 source:/home/dev/ghostone/ghost/language.cpp
+	"ghost.h"
+	"util.h"
+	"config.h"
+	"language.h"
+
+1258570904 source:/home/dev/ghostone/ghost/map.cpp
+	"ghost.h"
+	"util.h"
+	"crc32.h"
+	"sha1.h"
+	"config.h"
+	"map.h"
+	<stormlib/StormLib.h>
+
+1258570836 source:/home/dev/ghostone/ghost/packed.cpp
+	"ghost.h"
+	"util.h"
+	"crc32.h"
+	"packed.h"
+	<zlib.h>
+
+1271224180 /home/dev/ghostone/StormLib/stormlib/zlib/zlib.h
+	"zconf.h"
+
+1271224182 /home/dev/ghostone/StormLib/stormlib/zlib/zconf.h
+	<windows.h>
+	<sys/types.h>
+	<unistd.h>
+	<unixio.h>
+
+1267307186 source:/home/dev/ghostone/ghost/replay.cpp
+	"ghost.h"
+	"util.h"
+	"packed.h"
+	"replay.h"
+	"gameprotocol.h"
+
+1252916556 source:/home/dev/ghostone/ghost/savegame.cpp
+	"ghost.h"
+	"util.h"
+	"packed.h"
+	"savegame.h"
+
+1252916536 source:/home/dev/ghostone/ghost/sha1.cpp
+	"sha1.h"
+
+1267307218 source:/home/dev/ghostone/ghost/socket.cpp
+	"ghost.h"
+	"util.h"
+	"socket.h"
+	<string.h>
+
+1249393022 source:/home/dev/ghostone/ghost/sqlite3.c
+	"config.h"
+	<stdint.h>
+	<inttypes.h>
+	<tcl.h>
+	<stdarg.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	<stddef.h>
+	<windows.h>
+	<os2safe.h>
+	<os2.h>
+	<uconv.h>
+	<ctype.h>
+	<time.h>
+	<pthread.h>
+	<math.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<unistd.h>
+	<sys/time.h>
+	<errno.h>
+	<sys/ioctl.h>
+	<semaphore.h>
+	<limits.h>
+	<sys/file.h>
+	<sys/param.h>
+	<sys/mount.h>
+	<dlfcn.h>
+	<winbase.h>
+	<sys/cygwin.h>
+	<unicode/utypes.h>
+	<unicode/uregex.h>
+	<unicode/ustring.h>
+	<unicode/ucol.h>
+	<unicode/ubrk.h>
+	<unicode/utf16.h>
+
+1243451436 source:/home/dev/ghostone/ghost/stats.cpp
+	"ghost.h"
+	"stats.h"
+
+1250490822 source:/home/dev/ghostone/ghost/statsdota.cpp
+	"ghost.h"
+	"util.h"
+	"ghostdb.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"game_base.h"
+	"stats.h"
+	"statsdota.h"
+
+1252502820 source:/home/dev/ghostone/ghost/statsw3mmd.cpp
+	"ghost.h"
+	"util.h"
+	"ghostdb.h"
+	"gameprotocol.h"
+	"game_base.h"
+	"stats.h"
+	"statsw3mmd.h"
+
+1267359070 source:/home/dev/ghostone/ghost/util.cpp
+	"stdlib.h"
+	"ghost.h"
+	"util.h"
+	"string.h"
+	<sys/stat.h>
+
+1273126732 source:/home/dev/ghost2.0_ap/ghost/bncsutilinterface.cpp
+	"ghost.h"
+	"util.h"
+	"bncsutilinterface.h"
+	<bncsutil/bncsutil.h>
+
+1281070671 /home/dev/ghost2.0_ap/ghost/ghost.h
+	"includes.h"
+	"config.h"
+	"ghostdb.h"
+
+1258530790 /home/dev/ghost2.0_ap/ghost/includes.h
+	"ms_stdint.h"
+	<stdint.h>
+	<fstream>
+	<iostream>
+	<sstream>
+	<iomanip>
+	<algorithm>
+	<map>
+	<queue>
+	<set>
+	<string>
+	<vector>
+	<windows.h>
+	<wininet.h>
+	<winsock.h>
+
+1225150828 /home/dev/ghost2.0_ap/ghost/ms_stdint.h
+	<limits.h>
+	<wchar.h>
+
+1258367662 /home/dev/ghost2.0_ap/ghost/config.h
+
+1277374294 /home/dev/ghost2.0_ap/ghost/ghostdb.h
+	"boost/date_time/gregorian/gregorian.hpp"
+	"boost/date_time/time_system_counted.hpp"
+	"util.h"
+
+1267307044 /home/dev/ghost2.0_ap/ghost/util.h
+
+1258191632 /home/dev/ghost2.0_ap/ghost/bncsutilinterface.h
+
+1225154428 /home/dev/ghost2.0_ap/bncsutil/src/bncsutil/bncsutil.h
+	<bncsutil/mutil.h>
+	<bncsutil/checkrevision.h>
+	<bncsutil/bsha1.h>
+	<bncsutil/oldauth.h>
+	<bncsutil/decodekey.h>
+	<bncsutil/cdkeydecoder.h>
+	<bncsutil/nls.h>
+	<bncsutil/libinfo.h>
+
+1225154428 /home/dev/ghost2.0_ap/bncsutil/src/bncsutil/mutil.h
+	<config.h>
+	"mutil_types.h"
+	<stdlib.h>
+
+1225154428 /home/dev/ghost2.0_ap/bncsutil/src/bncsutil/mutil_types.h
+	"ms_stdint.h"
+	<stdint.h>
+
+1225154428 /home/dev/ghost2.0_ap/bncsutil/src/bncsutil/ms_stdint.h
+	<limits.h>
+	<wchar.h>
+
+1225154428 /home/dev/ghost2.0_ap/bncsutil/src/bncsutil/checkrevision.h
+	<string>
+
+1225154428 /home/dev/ghost2.0_ap/bncsutil/src/bncsutil/bsha1.h
+
+1225154428 /home/dev/ghost2.0_ap/bncsutil/src/bncsutil/oldauth.h
+
+1225154428 /home/dev/ghost2.0_ap/bncsutil/src/bncsutil/decodekey.h
+
+1225154428 /home/dev/ghost2.0_ap/bncsutil/src/bncsutil/cdkeydecoder.h
+	<bncsutil/mutil.h>
+
+1225154428 /home/dev/ghost2.0_ap/bncsutil/src/bncsutil/nls.h
+	<bncsutil/mutil.h>
+	<string>
+	<vector>
+	<utility>
+
+1225154428 /home/dev/ghost2.0_ap/bncsutil/src/bncsutil/libinfo.h
+
+1268742216 source:/home/dev/ghost2.0_ap/ghost/bnet.cpp
+	"ghost.h"
+	"util.h"
+	"config.h"
+	"language.h"
+	"socket.h"
+	"commandpacket.h"
+	"ghostdb.h"
+	"bncsutilinterface.h"
+	"bnlsclient.h"
+	"bnetprotocol.h"
+	"bnet.h"
+	"map.h"
+	"packed.h"
+	"savegame.h"
+	"replay.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"game_base.h"
+	<boost/filesystem.hpp>
+
+1268403624 /home/dev/ghost2.0_ap/ghost/language.h
+
+1267307216 /home/dev/ghost2.0_ap/ghost/socket.h
+	<winsock2.h>
+	<errno.h>
+	<arpa/inet.h>
+	<errno.h>
+	<fcntl.h>
+	<netdb.h>
+	<netinet/in.h>
+	<netinet/tcp.h>
+	<sys/ioctl.h>
+	<sys/socket.h>
+	<sys/types.h>
+	<unistd.h>
+
+1225150828 /home/dev/ghost2.0_ap/ghost/commandpacket.h
+
+1245334948 /home/dev/ghost2.0_ap/ghost/bnlsclient.h
+
+1258191612 /home/dev/ghost2.0_ap/ghost/bnetprotocol.h
+
+1267306780 /home/dev/ghost2.0_ap/ghost/bnet.h
+
+1258034554 /home/dev/ghost2.0_ap/ghost/map.h
+	"gameslot.h"
+
+1252916576 /home/dev/ghost2.0_ap/ghost/gameslot.h
+
+1258191686 /home/dev/ghost2.0_ap/ghost/packed.h
+
+1252916566 /home/dev/ghost2.0_ap/ghost/savegame.h
+	"gameslot.h"
+
+1252916516 /home/dev/ghost2.0_ap/ghost/replay.h
+	"gameslot.h"
+
+1268512452 /home/dev/ghost2.0_ap/ghost/gameplayer.h
+
+1267307190 /home/dev/ghost2.0_ap/ghost/gameprotocol.h
+	"gameslot.h"
+
+1275474093 /home/dev/ghost2.0_ap/ghost/game_base.h
+	"gameslot.h"
+
+1258191534 source:/home/dev/ghost2.0_ap/ghost/bnetprotocol.cpp
+	"ghost.h"
+	"util.h"
+	"bnetprotocol.h"
+
+1258570924 source:/home/dev/ghost2.0_ap/ghost/bnlsclient.cpp
+	"ghost.h"
+	"util.h"
+	"socket.h"
+	"commandpacket.h"
+	"bnlsprotocol.h"
+	"bnlsclient.h"
+
+1240113188 /home/dev/ghost2.0_ap/ghost/bnlsprotocol.h
+
+1240113188 source:/home/dev/ghost2.0_ap/ghost/bnlsprotocol.cpp
+	"ghost.h"
+	"util.h"
+	"bnlsprotocol.h"
+
+1225150828 source:/home/dev/ghost2.0_ap/ghost/commandpacket.cpp
+	"ghost.h"
+	"commandpacket.h"
+
+1258367662 source:/home/dev/ghost2.0_ap/ghost/config.cpp
+	"ghost.h"
+	"config.h"
+	<stdlib.h>
+
+1225150828 source:/home/dev/ghost2.0_ap/ghost/crc32.cpp
+	"ghost.h"
+	"crc32.h"
+
+1225150828 /home/dev/ghost2.0_ap/ghost/crc32.h
+
+1250411134 source:/home/dev/ghost2.0_ap/ghost/csvparser.cpp
+	<iostream>
+	<cstdlib>
+	"csvparser.h"
+
+1225150828 /home/dev/ghost2.0_ap/ghost/csvparser.h
+	<string>
+
+1275928611 source:/home/dev/ghost2.0_ap/ghost/game.cpp
+	"ghost.h"
+	"util.h"
+	"config.h"
+	"language.h"
+	"socket.h"
+	"ghostdb.h"
+	"bnet.h"
+	"map.h"
+	"packed.h"
+	"savegame.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"game_base.h"
+	"game.h"
+	"stats.h"
+	"statsdota.h"
+	"statsw3mmd.h"
+	<cmath>
+	<string.h>
+	<time.h>
+
+1267306974 /home/dev/ghost2.0_ap/ghost/game.h
+
+1243451452 /home/dev/ghost2.0_ap/ghost/stats.h
+
+1243451644 /home/dev/ghost2.0_ap/ghost/statsdota.h
+
+1252503080 /home/dev/ghost2.0_ap/ghost/statsw3mmd.h
+
+1268403618 source:/home/dev/ghost2.0_ap/ghost/game_admin.cpp
+	"ghost.h"
+	"util.h"
+	"config.h"
+	"language.h"
+	"socket.h"
+	"ghostdb.h"
+	"bnet.h"
+	"map.h"
+	"packed.h"
+	"savegame.h"
+	"replay.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"game_base.h"
+	"game_admin.h"
+	<string.h>
+	<boost/filesystem.hpp>
+
+1250361398 /home/dev/ghost2.0_ap/ghost/game_admin.h
+
+1268512504 source:/home/dev/ghost2.0_ap/ghost/gameplayer.cpp
+	"ghost.h"
+	"util.h"
+	"language.h"
+	"socket.h"
+	"commandpacket.h"
+	"bnet.h"
+	"map.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"gpsprotocol.h"
+	"game_base.h"
+	"ghostdb.h"
+
+1267101526 /home/dev/ghost2.0_ap/ghost/gpsprotocol.h
+
+1267307194 source:/home/dev/ghost2.0_ap/ghost/gameprotocol.cpp
+	"ghost.h"
+	"util.h"
+	"crc32.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"game_base.h"
+
+1252916572 source:/home/dev/ghost2.0_ap/ghost/gameslot.cpp
+	"ghost.h"
+	"gameslot.h"
+
+1281074342 source:/home/dev/ghost2.0_ap/ghost/ghost.cpp
+	"ghost.h"
+	"util.h"
+	"crc32.h"
+	"sha1.h"
+	"csvparser.h"
+	"config.h"
+	"language.h"
+	"socket.h"
+	"ghostdb.h"
+	"ghostdbsqlite.h"
+	"ghostdbmysql.h"
+	"bnet.h"
+	"map.h"
+	"packed.h"
+	"savegame.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"gpsprotocol.h"
+	"game_base.h"
+	"game.h"
+	"game_admin.h"
+	"bnetprotocol.h"
+	<cstring>
+	<signal.h>
+	<stdlib.h>
+	<ws2tcpip.h>
+	<boost/algorithm/string/replace.hpp>
+	<boost/filesystem/operations.hpp>
+	<stormlib/StormLib.h>
+	"ghost.h"
+	"util.h"
+	"crc32.h"
+	"sha1.h"
+	"csvparser.h"
+	"config.h"
+	"language.h"
+	"socket.h"
+	"commandpacket.h"
+	"ghostdb.h"
+	"ghostdbsqlite.h"
+	"ghostdbmysql.h"
+	"bncsutilinterface.h"
+	"warden.h"
+	"bnlsprotocol.h"
+	"bnlsclient.h"
+	"bnetprotocol.h"
+	"bnet.h"
+	"map.h"
+	"packed.h"
+	"savegame.h"
+	"replay.h"
+	"gameslot.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"gpsprotocol.h"
+	"game_base.h"
+	"game.h"
+	"game_admin.h"
+	"stats.h"
+	"statsdota.h"
+	"sqlite3.h"
+	<process.h>
+	<unistd.h>
+	<windows.h>
+	<wininet.h>
+	<winsock.h>
+	<time.h>
+	<sys/time.h>
+	<mach/mach_time.h>
+	<string.h>
+
+1237574776 /home/dev/ghost2.0_ap/ghost/sha1.h
+	<stdio.h>
+	<memory.h>
+	<string.h>
+	"ms_stdint.h"
+	<stdint.h>
+
+1267306606 /home/dev/ghost2.0_ap/ghost/ghostdbsqlite.h
+
+1267306618 /home/dev/ghost2.0_ap/ghost/ghostdbmysql.h
+
+1271224180 /home/dev/ghost2.0_ap/StormLib/stormlib/StormLib.h
+	"StormPort.h"
+	<pshpack1.h>
+	<poppack.h>
+	"StormDll.h"
+
+1271224180 /home/dev/ghost2.0_ap/StormLib/stormlib/StormPort.h
+	<assert.h>
+	<stdio.h>
+	<windows.h>
+	<Carbon/Carbon.h>
+	<sys/stat.h>
+	<sys/dtrace.h>
+	<sys/types.h>
+	<unistd.h>
+	<fcntl.h>
+	<unistd.h>
+	<stdint.h>
+	<stdlib.h>
+	<stdio.h>
+	<stdarg.h>
+	<string.h>
+	<ctype.h>
+	<assert.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<unistd.h>
+	<stdint.h>
+	<stdlib.h>
+	<stdio.h>
+	<stdarg.h>
+	<string.h>
+	<ctype.h>
+	<assert.h>
+
+1271224180 /home/dev/ghost2.0_ap/StormLib/stormlib/StormDll.h
+	<windows.h>
+
+1249393022 /home/dev/ghost2.0_ap/ghost/sqlite3.h
+	<stdarg.h>
+
+1267306582 source:/home/dev/ghost2.0_ap/ghost/ghostdb.cpp
+	"ghost.h"
+	"util.h"
+	"config.h"
+	"ghostdb.h"
+
+1267978484 source:/home/dev/ghost2.0_ap/ghost/ghostdbmysql.cpp
+	"ghost.h"
+	"util.h"
+	"config.h"
+	"ghostdb.h"
+	"ghostdbmysql.h"
+	<signal.h>
+	<winsock.h>
+	<mysql/mysql.h>
+	<boost/thread.hpp>
+
+1267306742 source:/home/dev/ghost2.0_ap/ghost/ghostdbsqlite.cpp
+	"ghost.h"
+	"util.h"
+	"config.h"
+	"ghostdb.h"
+	"ghostdbsqlite.h"
+	"sqlite3.h"
+	<boost/filesystem.hpp>
+
+1267101526 source:/home/dev/ghost2.0_ap/ghost/gpsprotocol.cpp
+	"ghost.h"
+	"util.h"
+	"gpsprotocol.h"
+
+1268403654 source:/home/dev/ghost2.0_ap/ghost/language.cpp
+	"ghost.h"
+	"util.h"
+	"config.h"
+	"language.h"
+
+1258570904 source:/home/dev/ghost2.0_ap/ghost/map.cpp
+	"ghost.h"
+	"util.h"
+	"crc32.h"
+	"sha1.h"
+	"config.h"
+	"map.h"
+	<stormlib/StormLib.h>
+
+1258570836 source:/home/dev/ghost2.0_ap/ghost/packed.cpp
+	"ghost.h"
+	"util.h"
+	"crc32.h"
+	"packed.h"
+	<zlib.h>
+
+1271224180 /home/dev/ghost2.0_ap/StormLib/stormlib/zlib/zlib.h
+	"zconf.h"
+
+1271224182 /home/dev/ghost2.0_ap/StormLib/stormlib/zlib/zconf.h
+	<windows.h>
+	<sys/types.h>
+	<unistd.h>
+	<unixio.h>
+
+1267307186 source:/home/dev/ghost2.0_ap/ghost/replay.cpp
+	"ghost.h"
+	"util.h"
+	"packed.h"
+	"replay.h"
+	"gameprotocol.h"
+
+1252916556 source:/home/dev/ghost2.0_ap/ghost/savegame.cpp
+	"ghost.h"
+	"util.h"
+	"packed.h"
+	"savegame.h"
+
+1252916536 source:/home/dev/ghost2.0_ap/ghost/sha1.cpp
+	"sha1.h"
+
+1267307218 source:/home/dev/ghost2.0_ap/ghost/socket.cpp
+	"ghost.h"
+	"util.h"
+	"socket.h"
+	<string.h>
+
+1249393022 source:/home/dev/ghost2.0_ap/ghost/sqlite3.c
+	"config.h"
+	<stdint.h>
+	<inttypes.h>
+	<tcl.h>
+	<stdarg.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	<stddef.h>
+	<windows.h>
+	<os2safe.h>
+	<os2.h>
+	<uconv.h>
+	<ctype.h>
+	<time.h>
+	<pthread.h>
+	<math.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<unistd.h>
+	<sys/time.h>
+	<errno.h>
+	<sys/ioctl.h>
+	<semaphore.h>
+	<limits.h>
+	<sys/file.h>
+	<sys/param.h>
+	<sys/mount.h>
+	<dlfcn.h>
+	<winbase.h>
+	<sys/cygwin.h>
+	<unicode/utypes.h>
+	<unicode/uregex.h>
+	<unicode/ustring.h>
+	<unicode/ucol.h>
+	<unicode/ubrk.h>
+	<unicode/utf16.h>
+
+1243451436 source:/home/dev/ghost2.0_ap/ghost/stats.cpp
+	"ghost.h"
+	"stats.h"
+
+1250490822 source:/home/dev/ghost2.0_ap/ghost/statsdota.cpp
+	"ghost.h"
+	"util.h"
+	"ghostdb.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"game_base.h"
+	"stats.h"
+	"statsdota.h"
+
+1252502820 source:/home/dev/ghost2.0_ap/ghost/statsw3mmd.cpp
+	"ghost.h"
+	"util.h"
+	"ghostdb.h"
+	"gameprotocol.h"
+	"game_base.h"
+	"stats.h"
+	"statsw3mmd.h"
+
+1267359070 source:/home/dev/ghost2.0_ap/ghost/util.cpp
+	"stdlib.h"
+	"ghost.h"
+	"util.h"
+	"string.h"
+	<sys/stat.h>
+
+1280384047 source:/home/dev/ghost2.0_ap/ghost/game_base.cpp
+	"ghost.h"
+	"util.h"
+	"config.h"
+	"language.h"
+	"socket.h"
+	"ghostdb.h"
+	"bnet.h"
+	"map.h"
+	"packed.h"
+	"savegame.h"
+	"replay.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"game_base.h"
+	<cmath>
+	<string.h>
+	<time.h>
+	"next_combination.h"
+
+1250436744 /home/dev/ghost2.0_ap/ghost/next_combination.h
+	<algorithm>
+
+1273126732 source:d:\svn\trunk\ghost\bncsutilinterface.cpp
+	"ghost.h"
+	"util.h"
+	"bncsutilinterface.h"
+	<bncsutil/bncsutil.h>
+
+1281070670 d:\svn\trunk\ghost\ghost.h
+	"includes.h"
+	"config.h"
+	"ghostdb.h"
+
+1258534390 d:\svn\trunk\ghost\includes.h
+	"ms_stdint.h"
+	<stdint.h>
+	<fstream>
+	<iostream>
+	<sstream>
+	<iomanip>
+	<algorithm>
+	<map>
+	<queue>
+	<set>
+	<string>
+	<vector>
+	<windows.h>
+	<wininet.h>
+	<winsock.h>
+
+1225154428 d:\svn\trunk\ghost\ms_stdint.h
+	<limits.h>
+	<wchar.h>
+
+1281789566 d:\svn\trunk\ghost\config.h
+
+1277374294 d:\svn\trunk\ghost\ghostdb.h
+	"boost/date_time/gregorian/gregorian.hpp"
+	"boost/date_time/time_system_counted.hpp"
+	"util.h"
+
+1267310644 d:\svn\trunk\ghost\util.h
+
+1258195232 d:\svn\trunk\ghost\bncsutilinterface.h
+
+1225158028 d:\svn\trunk\bncsutil\src\bncsutil\bncsutil.h
+	<bncsutil/mutil.h>
+	<bncsutil/checkrevision.h>
+	<bncsutil/bsha1.h>
+	<bncsutil/oldauth.h>
+	<bncsutil/decodekey.h>
+	<bncsutil/cdkeydecoder.h>
+	<bncsutil/nls.h>
+	<bncsutil/libinfo.h>
+
+1225158028 d:\svn\trunk\bncsutil\src\bncsutil\mutil.h
+	<config.h>
+	"mutil_types.h"
+	<stdlib.h>
+
+1225158028 d:\svn\trunk\bncsutil\src\bncsutil\mutil_types.h
+	"ms_stdint.h"
+	<stdint.h>
+
+1225158028 d:\svn\trunk\bncsutil\src\bncsutil\ms_stdint.h
+	<limits.h>
+	<wchar.h>
+
+1225158028 d:\svn\trunk\bncsutil\src\bncsutil\checkrevision.h
+	<string>
+
+1225158028 d:\svn\trunk\bncsutil\src\bncsutil\bsha1.h
+
+1225158028 d:\svn\trunk\bncsutil\src\bncsutil\oldauth.h
+
+1225158028 d:\svn\trunk\bncsutil\src\bncsutil\decodekey.h
+
+1225158028 d:\svn\trunk\bncsutil\src\bncsutil\cdkeydecoder.h
+	<bncsutil/mutil.h>
+
+1225158028 d:\svn\trunk\bncsutil\src\bncsutil\nls.h
+	<bncsutil/mutil.h>
+	<string>
+	<vector>
+	<utility>
+
+1225158028 d:\svn\trunk\bncsutil\src\bncsutil\libinfo.h
+
+1268745816 source:d:\svn\trunk\ghost\bnet.cpp
+	"ghost.h"
+	"util.h"
+	"config.h"
+	"language.h"
+	"socket.h"
+	"commandpacket.h"
+	"ghostdb.h"
+	"bncsutilinterface.h"
+	"bnlsclient.h"
+	"bnetprotocol.h"
+	"bnet.h"
+	"map.h"
+	"packed.h"
+	"savegame.h"
+	"replay.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"game_base.h"
+	<boost/filesystem.hpp>
+
+1268407224 d:\svn\trunk\ghost\language.h
+
+1267310816 d:\svn\trunk\ghost\socket.h
+	<winsock2.h>
+	<errno.h>
+	<arpa/inet.h>
+	<errno.h>
+	<fcntl.h>
+	<netdb.h>
+	<netinet/in.h>
+	<netinet/tcp.h>
+	<sys/ioctl.h>
+	<sys/socket.h>
+	<sys/types.h>
+	<unistd.h>
+
+1225154428 d:\svn\trunk\ghost\commandpacket.h
+
+1245334948 d:\svn\trunk\ghost\bnlsclient.h
+
+1258195212 d:\svn\trunk\ghost\bnetprotocol.h
+
+1267310380 d:\svn\trunk\ghost\bnet.h
+
+1258038154 d:\svn\trunk\ghost\map.h
+	"gameslot.h"
+
+1252916576 d:\svn\trunk\ghost\gameslot.h
+
+1258195286 d:\svn\trunk\ghost\packed.h
+
+1252916566 d:\svn\trunk\ghost\savegame.h
+	"gameslot.h"
+
+1252916516 d:\svn\trunk\ghost\replay.h
+	"gameslot.h"
+
+1268516052 d:\svn\trunk\ghost\gameplayer.h
+
+1267310790 d:\svn\trunk\ghost\gameprotocol.h
+	"gameslot.h"
+
+1275474092 d:\svn\trunk\ghost\game_base.h
+	"gameslot.h"
+
+1258195134 source:d:\svn\trunk\ghost\bnetprotocol.cpp
+	"ghost.h"
+	"util.h"
+	"bnetprotocol.h"
+
+1258574524 source:d:\svn\trunk\ghost\bnlsclient.cpp
+	"ghost.h"
+	"util.h"
+	"socket.h"
+	"commandpacket.h"
+	"bnlsprotocol.h"
+	"bnlsclient.h"
+
+1240113188 d:\svn\trunk\ghost\bnlsprotocol.h
+
+1240113188 source:d:\svn\trunk\ghost\bnlsprotocol.cpp
+	"ghost.h"
+	"util.h"
+	"bnlsprotocol.h"
+
+1225154428 source:d:\svn\trunk\ghost\commandpacket.cpp
+	"ghost.h"
+	"commandpacket.h"
+
+1258371262 source:d:\svn\trunk\ghost\config.cpp
+	"ghost.h"
+	"config.h"
+	<stdlib.h>
+
+1225154428 source:d:\svn\trunk\ghost\crc32.cpp
+	"ghost.h"
+	"crc32.h"
+
+1225154428 d:\svn\trunk\ghost\crc32.h
+
+1250411134 source:d:\svn\trunk\ghost\csvparser.cpp
+	<iostream>
+	<cstdlib>
+	"csvparser.h"
+
+1225154428 d:\svn\trunk\ghost\csvparser.h
+	<string>
+
+1275928610 source:d:\svn\trunk\ghost\game.cpp
+	"ghost.h"
+	"util.h"
+	"config.h"
+	"language.h"
+	"socket.h"
+	"ghostdb.h"
+	"bnet.h"
+	"map.h"
+	"packed.h"
+	"savegame.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"game_base.h"
+	"game.h"
+	"stats.h"
+	"statsdota.h"
+	"statsw3mmd.h"
+	<cmath>
+	<string.h>
+	<time.h>
+
+1267310574 d:\svn\trunk\ghost\game.h
+
+1243451452 d:\svn\trunk\ghost\stats.h
+
+1243451644 d:\svn\trunk\ghost\statsdota.h
+
+1252503080 d:\svn\trunk\ghost\statsw3mmd.h
+
+1268407218 source:d:\svn\trunk\ghost\game_admin.cpp
+	"ghost.h"
+	"util.h"
+	"config.h"
+	"language.h"
+	"socket.h"
+	"ghostdb.h"
+	"bnet.h"
+	"map.h"
+	"packed.h"
+	"savegame.h"
+	"replay.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"game_base.h"
+	"game_admin.h"
+	<string.h>
+	<boost/filesystem.hpp>
+
+1250361398 d:\svn\trunk\ghost\game_admin.h
+
+1280384046 source:d:\svn\trunk\ghost\game_base.cpp
+	"ghost.h"
+	"util.h"
+	"config.h"
+	"language.h"
+	"socket.h"
+	"ghostdb.h"
+	"bnet.h"
+	"map.h"
+	"packed.h"
+	"savegame.h"
+	"replay.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"game_base.h"
+	<cmath>
+	<string.h>
+	<time.h>
+	"next_combination.h"
+
+1250436744 d:\svn\trunk\ghost\next_combination.h
+	<algorithm>
+
+1268516104 source:d:\svn\trunk\ghost\gameplayer.cpp
+	"ghost.h"
+	"util.h"
+	"language.h"
+	"socket.h"
+	"commandpacket.h"
+	"bnet.h"
+	"map.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"gpsprotocol.h"
+	"game_base.h"
+	"ghostdb.h"
+
+1267105126 d:\svn\trunk\ghost\gpsprotocol.h
+
+1267310794 source:d:\svn\trunk\ghost\gameprotocol.cpp
+	"ghost.h"
+	"util.h"
+	"crc32.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"game_base.h"
+
+1252916572 source:d:\svn\trunk\ghost\gameslot.cpp
+	"ghost.h"
+	"gameslot.h"
+
+1267310182 source:d:\svn\trunk\ghost\ghostdb.cpp
+	"ghost.h"
+	"util.h"
+	"config.h"
+	"ghostdb.h"
+
+1267982084 source:d:\svn\trunk\ghost\ghostdbmysql.cpp
+	"ghost.h"
+	"util.h"
+	"config.h"
+	"ghostdb.h"
+	"ghostdbmysql.h"
+	<signal.h>
+	<winsock.h>
+	<mysql/mysql.h>
+	<boost/thread.hpp>
+
+1267310218 d:\svn\trunk\ghost\ghostdbmysql.h
+
+1267310342 source:d:\svn\trunk\ghost\ghostdbsqlite.cpp
+	"ghost.h"
+	"util.h"
+	"config.h"
+	"ghostdb.h"
+	"ghostdbsqlite.h"
+	"sqlite3.h"
+	<boost/filesystem.hpp>
+
+1267310206 d:\svn\trunk\ghost\ghostdbsqlite.h
+
+1249393022 d:\svn\trunk\ghost\sqlite3.h
+	<stdarg.h>
+
+1267105126 source:d:\svn\trunk\ghost\gpsprotocol.cpp
+	"ghost.h"
+	"util.h"
+	"gpsprotocol.h"
+
+1268407254 source:d:\svn\trunk\ghost\language.cpp
+	"ghost.h"
+	"util.h"
+	"config.h"
+	"language.h"
+
+1258574504 source:d:\svn\trunk\ghost\map.cpp
+	"ghost.h"
+	"util.h"
+	"crc32.h"
+	"sha1.h"
+	"config.h"
+	"map.h"
+	<stormlib/StormLib.h>
+
+1237578376 d:\svn\trunk\ghost\sha1.h
+	<stdio.h>
+	<memory.h>
+	<string.h>
+	"ms_stdint.h"
+	<stdint.h>
+
+1271224180 d:\svn\trunk\stormlib\stormlib\stormlib.h
+	"StormPort.h"
+	<pshpack1.h>
+	<poppack.h>
+	"StormDll.h"
+
+1271224180 d:\svn\trunk\stormlib\stormlib\stormport.h
+	<assert.h>
+	<stdio.h>
+	<windows.h>
+	<Carbon/Carbon.h>
+	<sys/stat.h>
+	<sys/dtrace.h>
+	<sys/types.h>
+	<unistd.h>
+	<fcntl.h>
+	<unistd.h>
+	<stdint.h>
+	<stdlib.h>
+	<stdio.h>
+	<stdarg.h>
+	<string.h>
+	<ctype.h>
+	<assert.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<unistd.h>
+	<stdint.h>
+	<stdlib.h>
+	<stdio.h>
+	<stdarg.h>
+	<string.h>
+	<ctype.h>
+	<assert.h>
+
+1271224180 d:\svn\trunk\stormlib\stormlib\stormdll.h
+	<windows.h>
+
+1258574436 source:d:\svn\trunk\ghost\packed.cpp
+	"ghost.h"
+	"util.h"
+	"crc32.h"
+	"packed.h"
+	<zlib.h>
+
+1271224180 d:\svn\trunk\stormlib\stormlib\zlib\zlib.h
+	"zconf.h"
+
+1271224182 d:\svn\trunk\stormlib\stormlib\zlib\zconf.h
+	<windows.h>
+	<sys/types.h>
+	<unistd.h>
+	<unixio.h>
+
+1267310786 source:d:\svn\trunk\ghost\replay.cpp
+	"ghost.h"
+	"util.h"
+	"packed.h"
+	"replay.h"
+	"gameprotocol.h"
+
+1252916556 source:d:\svn\trunk\ghost\savegame.cpp
+	"ghost.h"
+	"util.h"
+	"packed.h"
+	"savegame.h"
+
+1252916536 source:d:\svn\trunk\ghost\sha1.cpp
+	"sha1.h"
+
+1267310818 source:d:\svn\trunk\ghost\socket.cpp
+	"ghost.h"
+	"util.h"
+	"socket.h"
+	<string.h>
+
+1249393022 source:d:\svn\trunk\ghost\sqlite3.c
+	"config.h"
+	<stdint.h>
+	<inttypes.h>
+	<tcl.h>
+	<stdarg.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	<stddef.h>
+	<windows.h>
+	<os2safe.h>
+	<os2.h>
+	<uconv.h>
+	<ctype.h>
+	<time.h>
+	<pthread.h>
+	<math.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<unistd.h>
+	<sys/time.h>
+	<errno.h>
+	<sys/ioctl.h>
+	<semaphore.h>
+	<limits.h>
+	<sys/file.h>
+	<sys/param.h>
+	<sys/mount.h>
+	<dlfcn.h>
+	<winbase.h>
+	<sys/cygwin.h>
+	<unicode/utypes.h>
+	<unicode/uregex.h>
+	<unicode/ustring.h>
+	<unicode/ucol.h>
+	<unicode/ubrk.h>
+	<unicode/utf16.h>
+
+1243451436 source:d:\svn\trunk\ghost\stats.cpp
+	"ghost.h"
+	"stats.h"
+
+1250490822 source:d:\svn\trunk\ghost\statsdota.cpp
+	"ghost.h"
+	"util.h"
+	"ghostdb.h"
+	"gameplayer.h"
+	"gameprotocol.h"
+	"game_base.h"
+	"stats.h"
+	"statsdota.h"
+
+1252502820 source:d:\svn\trunk\ghost\statsw3mmd.cpp
+	"ghost.h"
+	"util.h"
+	"ghostdb.h"
+	"gameprotocol.h"
+	"game_base.h"
+	"stats.h"
+	"statsw3mmd.h"
+
+1267362670 source:d:\svn\trunk\ghost\util.cpp
+	"stdlib.h"
+	"ghost.h"
+	"util.h"
+	"string.h"
+	<sys/stat.h>
+

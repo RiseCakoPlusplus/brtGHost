@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Debug Win32" />
+	<File name="bnet.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="19325" topLine="539" />
+	</File>
+	<File name="bnet.h" open="1" top="0" tabpos="7">
+		<Cursor position="13471" topLine="237" />
+	</File>
+	<File name="game.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="2521" topLine="82" />
+	</File>
+	<File name="game.h" open="1" top="0" tabpos="5">
+		<Cursor position="2994" topLine="45" />
+	</File>
+	<File name="game_admin.cpp" open="1" top="0" tabpos="13">
+		<Cursor position="9986" topLine="310" />
+	</File>
+	<File name="game_admin.h" open="1" top="0" tabpos="11">
+		<Cursor position="2447" topLine="38" />
+	</File>
+	<File name="game_base.cpp" open="1" top="1" tabpos="1">
+		<Cursor position="97352" topLine="2990" />
+	</File>
+	<File name="game_base.h" open="1" top="0" tabpos="6">
+		<Cursor position="20552" topLine="347" />
+	</File>
+	<File name="gameplayer.cpp" open="1" top="0" tabpos="10">
+		<Cursor position="5537" topLine="217" />
+	</File>
+	<File name="ghost.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="81213" topLine="564" />
+	</File>
+	<File name="ghostdb.h" open="1" top="0" tabpos="8">
+		<Cursor position="49964" topLine="1234" />
+	</File>
+	<File name="language.cpp" open="1" top="0" tabpos="12">
+		<Cursor position="11578" topLine="412" />
+	</File>
+	<File name="ms_stdint.h" open="0" top="0" tabpos="0">
+		<Cursor position="2023" topLine="39" />
+	</File>
+	<File name="statsdota.cpp" open="1" top="0" tabpos="9">
+		<Cursor position="7808" topLine="191" />
+	</File>
+</CodeBlocks_layout_file>

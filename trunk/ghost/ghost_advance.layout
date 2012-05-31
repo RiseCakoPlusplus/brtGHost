@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Release MySQL" />
+	<File name="bncsutilinterface.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="687" topLine="0" />
+	</File>
+	<File name="bnet.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="16233" topLine="461" />
+	</File>
+	<File name="bnet.h" open="1" top="0" tabpos="7">
+		<Cursor position="5186" topLine="92" />
+	</File>
+	<File name="bnetprotocol.cpp" open="0" top="0" tabpos="7">
+		<Cursor position="1338" topLine="285" />
+	</File>
+	<File name="bnetprotocol.h" open="0" top="0" tabpos="3">
+		<Cursor position="1242" topLine="105" />
+	</File>
+	<File name="bnlsclient.h" open="0" top="0" tabpos="0">
+		<Cursor position="733" topLine="22" />
+	</File>
+	<File name="bnlsprotocol.cpp" open="0" top="0" tabpos="8">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="config.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="0" topLine="90" />
+	</File>
+	<File name="game.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="149254" topLine="4932" />
+	</File>
+	<File name="game_admin.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="9222" topLine="363" />
+	</File>
+	<File name="game_base.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="151243" topLine="4518" />
+	</File>
+	<File name="game_base.h" open="1" top="0" tabpos="3">
+		<Cursor position="16124" topLine="262" />
+	</File>
+	<File name="gameplayer.cpp" open="0" top="0" tabpos="8">
+		<Cursor position="16331" topLine="577" />
+	</File>
+	<File name="gameplayer.h" open="0" top="0" tabpos="8">
+		<Cursor position="9996" topLine="165" />
+	</File>
+	<File name="gameslot.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="681" topLine="45" />
+	</File>
+	<File name="ghost.cpp" open="1" top="1" tabpos="5">
+		<Cursor position="79167" topLine="2673" />
+	</File>
+	<File name="ghost.h" open="1" top="0" tabpos="1">
+		<Cursor position="10385" topLine="193" />
+	</File>
+	<File name="ghostdb.cpp" open="0" top="0" tabpos="11">
+		<Cursor position="20187" topLine="904" />
+	</File>
+	<File name="ghostdb.h" open="0" top="0" tabpos="10">
+		<Cursor position="36938" topLine="838" />
+	</File>
+	<File name="ghostdbmysql.cpp" open="0" top="0" tabpos="13">
+		<Cursor position="37154" topLine="1163" />
+	</File>
+	<File name="ghostdbmysql.h" open="0" top="0" tabpos="7">
+		<Cursor position="10224" topLine="240" />
+	</File>
+	<File name="ghostdbsqlite.cpp" open="1" top="0" tabpos="8">
+		<Cursor position="68203" topLine="1985" />
+	</File>
+	<File name="language.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="28468" topLine="986" />
+	</File>
+	<File name="ms_stdint.h" open="1" top="0" tabpos="10">
+		<Cursor position="1712" topLine="18" />
+	</File>
+	<File name="packed.cpp" open="0" top="0" tabpos="5">
+		<Cursor position="982" topLine="15" />
+	</File>
+	<File name="socket.cpp" open="1" top="0" tabpos="9">
+		<Cursor position="12904" topLine="577" />
+	</File>
+	<File name="socket.h" open="0" top="0" tabpos="6">
+		<Cursor position="3816" topLine="147" />
+	</File>
+	<File name="stats.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="681" topLine="23" />
+	</File>
+	<File name="statsdota.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1013" topLine="354" />
+	</File>
+	<File name="statsw3mmd.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1158" topLine="63" />
+	</File>
+</CodeBlocks_layout_file>

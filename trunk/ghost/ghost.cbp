@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="ghost" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug Win32">
+				<Option output="ghost" prefix_auto="1" extension_auto="1" />
+				<Option object_output="Debug Win32" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-DWIN32" />
+					<Add option="-D_DEBUG" />
+					<Add option="-D_CONSOLE" />
+					<Add option="-W" />
+					<Add option="-g" />
+					<Add option="-O0" />
+					<Add directory="../bncsutil/src" />
+					<Add directory="../StormLib" />
+					<Add directory="../zlib/include" />
+					<Add directory="../mysql/include" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="../bncsutil/src" />
+					<Add directory="../StormLib" />
+					<Add directory="../zlib/include" />
+					<Add directory="../mysql/include" />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="ws2_32" />
+					<Add library="winmm" />
+					<Add library="zdll" />
+					<Add library="StormLibRAS" />
+					<Add directory="../zlib/lib" />
+					<Add directory="../mysql/lib/opt" />
+					<Add directory="../boost/lib" />
+				</Linker>
+			</Target>
+			<Target title="Release Win32">
+				<Option output="ghost" prefix_auto="1" extension_auto="1" />
+				<Option object_output="Release Win32" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-DWIN32" />
+					<Add option="-DNDEBUG" />
+					<Add option="-D_CONSOLE" />
+					<Add option="-D_CRT_SECURE_NO_WARNINGS" />
+					<Add option="-W" />
+					<Add option="-O2" />
+					<Add directory="../bncsutil/src" />
+					<Add directory="../StormLib" />
+					<Add directory="../zlib/include" />
+					<Add directory="../mysql/include" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="../bncsutil/src" />
+					<Add directory="../StormLib" />
+					<Add directory="../zlib/include" />
+					<Add directory="../mysql/include" />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="ws2_32" />
+					<Add library="winmm" />
+					<Add library="zdll" />
+					<Add library="StormLibRAS" />
+					<Add directory="../zlib/lib" />
+					<Add directory="../mysql/lib/opt" />
+					<Add directory="../boost/lib" />
+				</Linker>
+			</Target>
+			<Target title="Debug MySQL Win32">
+				<Option output="ghost" prefix_auto="1" extension_auto="1" />
+				<Option object_output="Debug MySQL Win32" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-DWIN32" />
+					<Add option="-D_DEBUG" />
+					<Add option="-D_CONSOLE" />
+					<Add option="-DGHOST_MYSQL" />
+					<Add option="-D_CRT_SECURE_NO_WARNINGS" />
+					<Add option="-W" />
+					<Add option="-g" />
+					<Add option="-O0" />
+					<Add directory="../bncsutil/src" />
+					<Add directory="../StormLib" />
+					<Add directory="../zlib/include" />
+					<Add directory="../mysql/include" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="../bncsutil/src" />
+					<Add directory="../StormLib" />
+					<Add directory="../zlib/include" />
+					<Add directory="../mysql/include" />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="ws2_32" />
+					<Add library="winmm" />
+					<Add library="zdll" />
+					<Add library="StormLibRAS" />
+					<Add library="libmysql" />
+					<Add directory="../zlib/lib" />
+					<Add directory="../mysql/lib/opt" />
+					<Add directory="../boost/lib" />
+				</Linker>
+			</Target>
+			<Target title="Release MySQL Win32">
+				<Option output="ghost" prefix_auto="1" extension_auto="1" />
+				<Option object_output="Release MySQL Win32" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-DWIN32" />
+					<Add option="-DNDEBUG" />
+					<Add option="-D_CONSOLE" />
+					<Add option="-DGHOST_MYSQL" />
+					<Add option="-D_CRT_SECURE_NO_WARNINGS" />
+					<Add option="-W" />
+					<Add directory="../bncsutil/src" />
+					<Add directory="../StormLib" />
+					<Add directory="../zlib/include" />
+					<Add directory="../mysql/include" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="../bncsutil/src" />
+					<Add directory="../StormLib" />
+					<Add directory="../zlib/include" />
+					<Add directory="../mysql/include" />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="ws2_32" />
+					<Add library="winmm" />
+					<Add library="zdll" />
+					<Add library="StormLibRAS" />
+					<Add library="libmysql" />
+					<Add directory="../zlib/lib" />
+					<Add directory="../mysql/lib/opt" />
+					<Add directory="../boost/lib" />
+				</Linker>
+			</Target>
+		</Build>
+		<Unit filename="bncsutilinterface.cpp" />
+		<Unit filename="bnet.cpp" />
+		<Unit filename="bnetprotocol.cpp" />
+		<Unit filename="bnlsclient.cpp" />
+		<Unit filename="bnlsprotocol.cpp" />
+		<Unit filename="commandpacket.cpp" />
+		<Unit filename="config.cpp" />
+		<Unit filename="crc32.cpp" />
+		<Unit filename="csvparser.cpp" />
+		<Unit filename="game.cpp" />
+		<Unit filename="game_admin.cpp" />
+		<Unit filename="game_base.cpp" />
+		<Unit filename="gameplayer.cpp" />
+		<Unit filename="gameprotocol.cpp" />
+		<Unit filename="gameslot.cpp" />
+		<Unit filename="ghost.cpp" />
+		<Unit filename="ghostdb.cpp" />
+		<Unit filename="ghostdbmysql.cpp" />
+		<Unit filename="ghostdbsqlite.cpp" />
+		<Unit filename="gpsprotocol.cpp" />
+		<Unit filename="language.cpp" />
+		<Unit filename="map.cpp" />
+		<Unit filename="packed.cpp" />
+		<Unit filename="replay.cpp" />
+		<Unit filename="savegame.cpp" />
+		<Unit filename="sha1.cpp" />
+		<Unit filename="socket.cpp" />
+		<Unit filename="sqlite3.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="stats.cpp" />
+		<Unit filename="statsdota.cpp" />
+		<Unit filename="statsw3mmd.cpp" />
+		<Unit filename="util.cpp" />
+		<Unit filename="bncsutilinterface.h" />
+		<Unit filename="bnet.h" />
+		<Unit filename="bnetprotocol.h" />
+		<Unit filename="bnlsclient.h" />
+		<Unit filename="bnlsprotocol.h" />
+		<Unit filename="commandpacket.h" />
+		<Unit filename="config.h" />
+		<Unit filename="crc32.h" />
+		<Unit filename="csvparser.h" />
+		<Unit filename="game.h" />
+		<Unit filename="game_admin.h" />
+		<Unit filename="game_base.h" />
+		<Unit filename="gameplayer.h" />
+		<Unit filename="gameprotocol.h" />
+		<Unit filename="gameslot.h" />
+		<Unit filename="ghost.h" />
+		<Unit filename="ghostdb.h" />
+		<Unit filename="ghostdbmysql.h" />
+		<Unit filename="ghostdbsqlite.h" />
+		<Unit filename="gpsprotocol.h" />
+		<Unit filename="includes.h" />
+		<Unit filename="language.h" />
+		<Unit filename="map.h" />
+		<Unit filename="ms_stdint.h" />
+		<Unit filename="next_combination.h" />
+		<Unit filename="packed.h" />
+		<Unit filename="replay.h" />
+		<Unit filename="savegame.h" />
+		<Unit filename="sha1.h" />
+		<Unit filename="socket.h" />
+		<Unit filename="sqlite3.h" />
+		<Unit filename="sqlite3ext.h" />
+		<Unit filename="stats.h" />
+		<Unit filename="statsdota.h" />
+		<Unit filename="statsw3mmd.h" />
+		<Unit filename="util.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

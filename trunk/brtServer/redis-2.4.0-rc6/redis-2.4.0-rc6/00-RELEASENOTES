@@ -1,0 +1,63 @@
+Redis 2.4 release notes
+
+Migrating from 2.2 to 2.4
+=========================
+
+Redis 2.2 is mostly a strict subset of 2.4.
+The only thing you should be aware is that you can't use .rdb and AOF files
+generated with 2.4 into a 2.2 instance.
+
+2.4 slaves can be attached to 2.2 masters, but not the contrary, and only for
+the time needed to perform the version upgrade.
+
+From the point of view of the API Redis 2.4 only adds new commands
+(other commands now accepts a variable number of arguments) so you don't need
+to modify your program in order to use Redis 2.4.
+
+---------
+CHANGELOG
+---------
+
+What's new in Redis 2.3.9 (2.4 Release Candidate 6)
+===================================================
+
+* [BUGFIX] Fixed a bug with the automatic AOF rewrite causing continuous
+  rewrites for AOF files bigger than 4 GB.
+* New maxmemory tests.
+
+What's new in Redis 2.3.8 (2.4 Release Candidate 5)
+===================================================
+
+Compared to Redis 2.3.7 (RC4) there are the following changes:
+
+* [BUGFIX] HDEL: Abort deleting fields when hash is removed.
+* [BUGFIX] Fix adding bulk reply when getcwd fails.
+
+WHAT'S NEW IN REDIS 2.4 compared to the 2.2 version?
+====================================================
+
+* Specially encoded sorted sets, now small sorted sets will use little memory.
+* Native persistence of specially encoded data types (ziplists, zipmaps,
+  intsets). Many data sets will be saved and loaded an order of magnitude
+  faster.
+* Variadic versions of commands: SADD, HDEL, SREM, ZREM, ZADD, L/RPUSH.
+* Jemalloc support (enabled by default for Linux build) in order to
+  avoid fragmentation issues.
+* Reduced memory usage while saving.
+* More info fields (peak memory, fork time, ...)
+* OBJECT command for objects introspection.
+* CLIENT command for clients introspection.
+* Non blocking slave -> master connection.
+* Better redis-cli connection handling. New redis-cli features.
+* Better redis-benchmark, now able to benchmark user provided commands.
+* Colorized Make.
+* VM deprecated. Still supported but with a big warning... don't use it.
+* Many speed optimizations and bug fixes.
+
+Credits: Where not specified the implementation and design are done by
+Salvatore Sanfilippo and Pieter Noordhuis. Thanks to VMware for making all
+this possible. Also many thanks to all the other contributors and the amazing
+community we have.
+
+Cheers,
+Salvatore

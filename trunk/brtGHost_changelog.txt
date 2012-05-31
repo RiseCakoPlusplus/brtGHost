@@ -1,0 +1,158 @@
+brtGHost 1.7.1 by 
+freed (avon.dn.ua@gmail.com)
+Griffon (gpm@ukr.net)
+
+Changelog
+1.7.1 r170
+
+MastaKilla updates
+ENGLISH:
+brtGHost
+- Fixed problem with namespoofing ( problem cached spoof list )
+  Explain: i host on multiple realms. i set the bot to require spoofchecks for everyone. lets say "UserA" is admin on realm 
+  1. Then some random guy took the "UserA" account on realm 
+  2, joined one of my games, got spoofchecked correctly (but no admin rights till now). 
+  right after that he connected to realm 1 where the real "UserA" is granted admin access. 
+  Now he spoofed the UserA account on realm 1, 
+  connected to a game and he wasnt spoof checked again, because name + ip was in cached spoof list from realm2. 
+  therefore the namespoofing wasn't detected and e voila .. a random fag had unrightful admin access on my bot! 
+
+- Disabled !GET, !SET and !SETNEW command.
+  Explain: Incredible security breach in my opinion. as the above mentioned spoofattack (and i guess there is always room for more/different attacks) 
+  would also work on root admins, your gamekeys are "free to go" Подмигивающий with the !get command you can get any value from the config file, 
+  including the roc/tft keys - the only thing of real value on a bot imo Подмигивающий for what it's worth i threw both, the get and set command in bnet.cpp, 
+  completely out. as nice as this feature was meant to be, i dont see the need to modify the cfg via bot/bnet.. that what a shell is made for.
+
+- Fixed problem with ban system, namely the ban system is not multi realm capable if it comes to admins. lets say UserA is admin on realm1, 
+  and i placed bans for UserA (just to avoid namespoofing on other realms..) on realm2, realm3 etc. (my admins always connect from same realm!) 
+  But no matter what, "fake" UserA could still join games from realm 2, realm3 etc. Well, he got no admin rights, but he is still treated as safelisted/admin, 
+  coz he cannot only join a game, but even join a full game and autokick someone else out - which most likely shouldn't happen.
+
+- Fixed security bug, wich possible spoof attack by spoofing the owner name.
+
+- Removed root admin default string. We dont want the user "root" to be rootadmin as default.
+- Fixed bug with replays version.
+
+Freed updates
+brtGHost
+- Attention! Now you need to put in a folder with bot - default_new.cfg. This is a new config file format, which will then be used.
+- After end of game, build and save replays putted in another thread.
+- Added some functionality for brtServer ( command !pub, !priv, !score )
+- Fixed !autobalance command
+
+brtServer
+
+- Added possibility of connect to an unlimited number of BNET server.
+- Added !pub, !priv and !score command.
+- Added update_dota_elo, you can configure it be update elo scores after each game, or after a certain period of time.
+- Added multitasking support, all bnet connectins and update_dota_elo, will be running in other thread.
+
+1.7.1
+- Fixed some critical bugs, after whom bot crashes
+- Changed !ff command mehanics
+
+1.7.0.9 r83
+- Change to old ip-to-country database.
+- Added new lobby command - !abc, Auto BalanCe slots with score ( beta )
+- Added new config variable bot_forceautobalanceteams, To force autobalance team with score, before start.
+- In default.cfg, added
+ * bot_reconnectwaittime
+ * bot_reconnectport 
+ * bot_bindaddress
+ * bot_lobbytimelimitmax
+
+- Fixed some bugs
+
+
+1.7.0.9
+- New ip-to-country database from 08.10.2010
+- Only root admin can add\remove from safe list
+- Added new config variable bot_gamenamecontainstring, if no empty, game name must contain this string. (for !pub command)
+- Added new command - !help, to show for non-admin commands.
+- Added config value bot_enablebnetcommandsinchannel (if 0 - bot don't responding
+any commands on bnet channel (only whisper) )
+- mars update (you can use new $RANDNUMBER$ variable in text file, to get random number, and
+ and many use $RANDOM$ in the same sentence.
+- added new config value bnet*_locale
+- many other fix errors
+- BETA version.
+
+1.7.0.8
+- fixed some memory leaks
+- fixed critical bug since last revision.
+- BETA version
+------------------------------------------------------------------------
+1.7.0.7
+ - renamed ghost.cfg to default.cfg
+  * the bot now loads default.cfg first then loads ghost.cfg (or the file specified on the command line) and overrides default.cfg with any values in ghost.cfg
+  * added reloading of default.cfg before reloading the main config file (e.g. when using the !reload command)
+ - added printing of Observer/Referee messages to the console and log file
+ - added new map config value map_options
+  * added support for custom maps that allow selectable teams, colours, and races
+  * changed the meaning of SLOTRACE_FIXED to SLOTRACE_SELECTABLE as the previous meaning was incorrect
+  * fixed the bot's logic for changing teams, colours, and races to take the map options into account
+  * note: these changes may "break" existing map configs since previously the bot would assume a map was "custom" by default and now it assumes a map has selectable teams, colours, and races by default
+ - fixed the "GameType" value being set incorrectly (using Strilanc's specification, thanks again!)
+  * you can now specify the map filters that should apply to the games your bot creates
+  * removed map config value map_gametype (its functionality has been replaced by map_options in a previous revision)
+  * added map config value map_filter_maker
+  * added map config value map_filter_type
+  * added map config value map_filter_size
+  * added map config value map_filter_obs
+ - matchmaking can only be used on maps with fixed player settings rather than only on custom maps now
+ - spaces in (and after) cdkeys are now ignored
+- fixed RECEIVE_SID_AUTH_ACCOUNTLOGONPROOF to allow newly created accounts to
+   log on without email registration.
+- fixed some language errors
+
+-----------------------------------------------------------------------------
+1.7.0.6 on September 25, 2010
+- fix some language errors
+- Added SQlite support to show leave count and percent for !sd command
+- Added new class for !sd command - Newbie.
+- Added !ff and !noff command. Example - if all team type !ff, she will lose, and game will end after 5 seconds.
+- Added default.cfg
+
+- Other minor fix
+
+-------------------------------------------------------------------------------
+1.7.0.5 on September 20, 2010
+
+- It's 100% compatible with GHost One GUI
+- fix replay bug.
+- fix bug with bans (someone banned player can join the game)
+- fix flood in chat about ip bannig.
+- Language class refactoring.
+- Translated 95% of all text, full compatible english and russian language config file.
+  Language translated it's not fully completed. We work on them
+- In admin game lobby, you don't want to type password anytime. You must type
+  password once, and bot store you name, ip. When you connect to admin lobby next,
+  you don't type password yet.
+- !ips command - now send ip info only to admin, nobody else will see it
+- some optimizations that should reduce the time required to save replays
+  * removed some unnecessary data from replays (player checksums)
+  * the bot now builds a (mostly) complete replay in memory as the game progresses (rather than building the replay at the end of the game)
+- fixed a bug where GHost++ would occasionally generate broken replays (anytime a "pretick" or w3gs_incoming_action2 was generated)
+- fixed a bug where GProxy++ users would desync upon reconnection when load-in-game was enabled
+- fixed a bug which allowed rehosting a game with a name over 31 characters (this causes a ban from Battle.net)
+- fixed a bug which allowed a map_path longer than 49 characters (this causes a disconnect from Battle.net)
+- Added UDP command "sendgamesstatus", it send back information about killed towers, rax kills, game name, game time, game creator.
+- Added leave count and percent for !sd command. SQlite not support yet.
+- Added !end <winner> command. Syntax - !end 1 - for winner SENTINEL, and !end 2 - for winner SOURGE. !end with no params work too.
+
+- and other minor optimizations
+
+
+Allstats changes
+- Into screen now show warcraft3 map on each game, with towers,rax status (dead/alive) - (sample you can see here http://brt.org.ua/stats)
+  at now, sqlite not support yet.
+
+- in gameinfo page, show you what elopoint you get on each game.
+
+DB structure changes
+- Base gameplayer added row "elopoints", We store here point on each game what you get.
+
+Update_dota_elo changes
+- If you are leave from game, and you team are winner, you don't get elopoint. And conversely, if you team has lose, you take away elo points
+- Some coefficients changes.
+

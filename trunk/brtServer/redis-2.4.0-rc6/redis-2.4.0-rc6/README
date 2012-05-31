@@ -1,0 +1,94 @@
+Where to find complete Redis documentation?
+-------------------------------------------
+
+This README is just a fast "quick start" document. You can find more detailed
+documentation at http://redis.io
+
+Building Redis
+--------------
+
+It is as simple as:
+
+    % make
+
+Redis is just a single binary, but if you want to install it you can use
+the "make install" target that will copy the binary in /usr/local/bin
+for default. You can also use "make PREFIX=/some/other/directory install"
+if you wish to use a different destination.
+
+You can run a 32 bit Redis binary using:
+
+    % make 32bit
+
+After building Redis is a good idea to test it, using:
+
+    % make test
+
+NOTE: if after building Redis with a 32 bit target you need to rebuild it
+      with a 64 bit target you need to perform a "make clean" in the root
+      directory of the Redis distribution.
+
+Allocator
+---------
+
+By default Redis compiles and links against jemalloc under Linux, since
+glibc malloc() has memory fragmentation problems.
+
+To force a libc malloc() build use:
+
+    make FORCE_LIBC_MALLOC=yes
+
+In all the other non Linux systems the libc malloc() is used by default.
+
+On Mac OS X you can force a jemalloc based build using the following:
+
+    make USE_JEMALLOC=yes
+
+Verbose build
+-------------
+
+Redis will build with a user friendly colorized output by default.
+If you want to see a more verbose output use the following:
+
+    make V=1
+
+Running Redis
+-------------
+
+To run Redis with the default configuration just type:
+
+    % cd src
+    % ./redis-server
+    
+If you want to provide your redis.conf, you have to run it using an additional
+parameter (the path of the configuration file):
+
+    % cd src
+    % ./redis-server /path/to/redis.conf
+
+Playing with Redis
+------------------
+
+You can use redis-cli to play with Redis. Start a redis-server instance,
+then in another terminal try the following:
+
+    % cd src
+    % ./redis-cli
+    redis> ping
+    PONG
+    redis> set foo bar
+    OK
+    redis> get foo
+    "bar"
+    redis> incr mycounter
+    (integer) 1
+    redis> incr mycounter
+    (integer) 2
+    redis> 
+
+You can find the list of all the available commands here:
+
+    http://redis.io/commands
+
+Enjoy!
+
