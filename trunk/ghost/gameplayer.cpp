@@ -307,6 +307,7 @@ CGamePlayer :: CGamePlayer( CGHost* nGHost, CGameProtocol *nProtocol, CBaseGame 
 	m_Lagging = false;
 	m_DropVote = false;
 	m_KickVote = false;
+	m_StartVote = false;
 	m_RmkVote = false;
 	m_FFVote = false;
 	m_Muted = false;
@@ -386,6 +387,7 @@ CGamePlayer :: CGamePlayer(CGHost* nGHost, CPotentialPlayer *potential, unsigned
 	m_Lagging = false;
 	m_DropVote = false;
 	m_KickVote = false;
+	m_StartVote = false;
 	m_Muted = false;
 	m_FFVote = false;
 	m_LeftMessageSent = false;

@@ -192,6 +192,7 @@ CBaseGame :: CBaseGame( CGHost *nGHost, CMap *nMap, CSaveGame *nSaveGame, uint16
 	m_LastWarnCheck = 0;
 	m_MuteLobby = false;
 	m_CountDownStarted = false;
+	m_StartVoteStarted = false;
 	m_GameEndCountDownStarted = false;
 	m_GameLoading = false;
 	m_GameLoaded = false;

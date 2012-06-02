@@ -166,6 +166,7 @@ protected:
 	bool m_MuteAll;									// if we should stop forwarding ingame chat messages targeted for all players or not
 	bool m_MuteLobby;								// if we should stop forwarding lobby chat messages
 	bool m_CountDownStarted;						// if the game start countdown has started or not
+	bool m_StartVoteStarted;
 //	bool m_GameLoading;								// if the game is currently loading or not
 	bool m_GameLoaded;								// if the game has loaded or not
 	bool m_LoadInGame;								// if the load-in-game feature is enabled or not
