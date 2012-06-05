@@ -431,6 +431,11 @@ uint32_t CBaseGame :: GetNextTimedActionTicks( )
 		return m_DynamicLatency - m_LastActionLateBy - TicksSinceLastUpdate;
 }
 
+string CBaseGame :: GetMapName( )
+{
+	return m_Map->GetMapPath();
+}
+
 uint32_t CBaseGame :: GetSlotsOccupied( )
 {
 	uint32_t NumSlotsOccupied = 0;
@@ -6144,6 +6149,27 @@ CGamePlayer *CBaseGame :: GetPlayerFromColour( unsigned char colour )
 	}
 
 	return NULL;
+}
+
+string CBaseGame :: GetPlayerList( )
+{
+	string players = "";
+	
+	for( unsigned char i = 0; i < m_Slots.size( ); ++i )
+	{
+		if( m_Slots[i].GetSlotStatus( ) == SLOTSTATUS_OCCUPIED && m_Slots[i].GetComputer( ) == 0 )
+		{
+			CGamePlayer *player = GetPlayerFromSID( i );
+			
+			if( player )
+				players += player->GetName( ) + "\t" + player->GetSpoofedRealm( ) + "\t" + UTIL_ToString( player->GetPing( m_GHost->m_LCPings ) ) + "\t";
+		}
+		
+		else if( m_Slots[i].GetSlotStatus( ) == SLOTSTATUS_OPEN )
+			players += "\t\t\t";
+	}
+
+	return players;
 }
 
 unsigned char CBaseGame :: GetNewPID( )

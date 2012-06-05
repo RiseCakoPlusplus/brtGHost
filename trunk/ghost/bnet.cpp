@@ -221,6 +221,9 @@ CBNET :: ~CBNET( )
 
 	for( vector<PairedDPSCheck> :: iterator i = m_PairedDPSChecks.begin( ); i != m_PairedDPSChecks.end( ); i++ )
 		m_GHost->m_Callables.push_back( i->second );
+	
+	for( vector<PairedGameUpdate> :: iterator i = m_PairedGameUpdates.begin( ); i != m_PairedGameUpdates.end( ); ++i )
+		m_GHost->m_Callables.push_back( i->second );
 
 	if( m_CallableAdminList )
 		m_GHost->m_Callables.push_back( m_CallableAdminList );
@@ -746,6 +749,23 @@ bool CBNET :: Update( void *fd, void *send_fd )
 			}
 		QueueChatCommand(sMsg, sUser, true);
 	}
+
+	for( vector<PairedGameUpdate> :: iterator i = m_PairedGameUpdates.begin( ); i != m_PairedGameUpdates.end( ); )
+	{
+		if( i->second->GetReady( ) )
+		{
+			string response = i->second->GetResult( );
+
+            QueueChatCommand( response, i->first, !i->first.empty( ) );
+
+			m_GHost->m_DB->RecoverCallable( i->second );
+			delete i->second;
+			i = m_PairedGameUpdates.erase( i );
+		}
+		else
+                        ++i;
+	}
+
 
 	// refresh the admin list every 5 minutes
 
@@ -5880,11 +5900,21 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 //			if( IsAdmin( User ) || IsRootAdmin( User ) || m_OutPackets.size( ) <= 3 )
 			else if( m_OutPackets.size( ) <= 3 )
 			{
-				//
-				// !STATS
-				//
 
-				if( Command == "stats" )
+				//
+				// !GAMES
+ 				//
+
+				if( Command == "games" || Command == "g" )
+				{
+					m_PairedGameUpdates.push_back( PairedGameUpdate( Whisper ? User : string( ), m_GHost->m_DB->ThreadedGameUpdate("", "", "", "", 0, "", 0, 0, 0, false ) ) );
+				}
+				
+				//
+ 				// !STATS
+ 				//
+
+				else if( Command == "stats" )
 				{
 					string StatsUser = User;
 
